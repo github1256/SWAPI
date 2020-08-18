@@ -10,4 +10,6 @@ import TinyNetworking
 
 public class APIService {
     static let shared = APIService()
+    
+    let baseUrl = "http://swapi.dev/api/people/"
 }

@@ -9,5 +9,20 @@
 import Foundation
 
 struct People: Codable {
-    
+    let name: String
+    let birthYear: String
+    let eyeColor: String
+    let gender: String
+    let hairColor: String
+    let height: String
+    let mass: String
+    let skinColor: String
+    let homeworld: String
+    let films: [URL]
+    let species: [URL]
+    let starships: [URL]
+    let vehicles: [URL]
+    let url: String
+    let created: String
+    let edited: String
 }
