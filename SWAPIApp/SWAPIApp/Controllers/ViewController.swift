@@ -20,6 +20,18 @@ class ViewController: UIViewController {
         setupTableView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        APIService.shared.fetchPeople { result in
+            switch result {
+            case .success(let people):
+                print(people)
+            case .failure(let error):
+                print("Failed to fetch people:", error)
+            }
+        }
+    }
+    
     deinit {
         print("ViewController memory being reclaimed...")
     }
