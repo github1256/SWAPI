@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     // MARK: - Variables and Properties
     
+    var people: [People]?
+    
     // MARK: - Lifecycles
 
     override func viewDidLoad() {
@@ -25,7 +27,9 @@ class ViewController: UIViewController {
         APIService.shared.fetchPeople { result in
             switch result {
             case .success(let people):
-                print(people)
+                people.forEach { person in
+                    print(person.name)
+                }
             case .failure(let error):
                 print("Failed to fetch people:", error)
             }

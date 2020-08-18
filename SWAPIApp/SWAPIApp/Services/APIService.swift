@@ -10,11 +10,11 @@ import TinyNetworking
 import UIKit
 
 public class APIService {
+    
     static let shared = APIService()
     
-    let baseUrl = "https://swapi.dev/api/people/"
-    
     func fetchPeople(completion: @escaping (Result<[People], Error>) -> Void) {
+        let baseUrl = "https://swapi.dev/api/people/"
         guard let url = URL(string: baseUrl) else { print("Error: \(baseUrl) is not a valid URL."); return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -27,19 +27,23 @@ public class APIService {
                 
                 guard let safeData = data else { return }
                 
-                let stringData = String(decoding: safeData, as: UTF8.self)
-                print(stringData)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-//                do {
-//                    let decoder = JSONDecoder()
-//                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-//                    let people = try decoder.decode([People].self, from: safeData)
-//                    completion(.success(people))
-//
-//                } catch let jsonError {
-//                    completion(.failure(jsonError))
-//                }
+                do {
+                    let searchResult = try decoder.decode(SearchResults.self, from: safeData)
+                    completion(.success(searchResult.results))
+                } catch let jsonError {
+                    completion(.failure(jsonError))
+                }
             }
         }.resume()
     }
+}
+
+struct SearchResults: Codable {
+    let count: Int
+    let next: URL
+    let previous: URL
+    let results: [People]
 }
