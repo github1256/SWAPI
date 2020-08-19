@@ -33,17 +33,24 @@ class SWCharacterDetailView: UIViewController {
         didSet {
             view.backgroundColor = .white
             
-            setupNavigationBar()
+            setupTitleView()
             
             //navigationItem.title = "\(person.name), born \(person.birthYear)"
         }
     }
     
-    // MARK: - Subviewss
+    // MARK: - Subviews
     
     let characterDetailView: CharacterDetailView = {
         let view = CharacterDetailView()
         return view
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
     }()
     
     // MARK: - Lifecycles
@@ -65,30 +72,13 @@ class SWCharacterDetailView: UIViewController {
         characterDetailView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
-    private func setupNavigationBar() {
-        let titleLabel = UILabel()
-        
-        let navigationTitle = NSMutableAttributedString(string: person.name, attributes:
-            [
-                NSAttributedString.Key.foregroundColor: UIColor.black,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .bold)
-            ]
-        )
-        
-        let navigationSubtitle = NSMutableAttributedString(string: "date of birth: \(person.birthYear)", attributes:
-            [
-                NSAttributedString.Key.foregroundColor: UIColor.secondaryLabel,
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .light)
-            ]
-        )
-        
-        navigationTitle.append(NSMutableAttributedString(string: "\n"))
-        navigationTitle.append(navigationSubtitle)
-
-        titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
-        titleLabel.attributedText = navigationTitle
-        self.navigationItem.titleView = titleLabel
+    private func setupTitleView() {
+        let navTitle = person.name.customizeString(color: .black, fontSize: 18.0, weight: .bold)
+        let navSubtitle = "Date of Birth: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
+        navTitle.append(NSMutableAttributedString(string: "\n"))
+        navTitle.append(navSubtitle)
+        titleLabel.attributedText = navTitle
+        navigationItem.titleView = titleLabel
     }
     
     private func setupNavigationBarButtons() {

@@ -30,6 +30,7 @@
 		93926B8524EDD0D300BC88CD /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8424EDD0D300BC88CD /* CharacterDetailView.swift */; };
 		93926B8724EDD11C00BC88CD /* CharacterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93926B8624EDD11C00BC88CD /* CharacterDetailView.xib */; };
 		93926B8924EDDDC300BC88CD /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8824EDDDC300BC88CD /* Film.swift */; };
+		93926B8B24EDEC4300BC88CD /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8A24EDEC4300BC88CD /* String + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		93926B8424EDD0D300BC88CD /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		93926B8624EDD11C00BC88CD /* CharacterDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailView.xib; sourceTree = "<group>"; };
 		93926B8824EDDDC300BC88CD /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		93926B8A24EDEC4300BC88CD /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9316232C24EC5B3100EF409C /* UIView + Layout.swift */,
+				93926B8A24EDEC4300BC88CD /* String + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93926B8524EDD0D300BC88CD /* CharacterDetailView.swift in Sources */,
+				93926B8B24EDEC4300BC88CD /* String + Extensions.swift in Sources */,
 				9316231724EC56CA00EF409C /* SWCharactersListViewController.swift in Sources */,
 				93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */,
 				93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */,
