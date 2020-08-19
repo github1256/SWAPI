@@ -27,19 +27,17 @@ final class StarWarsViewModel {
     private var total = 0
     
     let apiClient = APIClient()
-    //let request: SwapiRequest
     
     var totalCount: Int { return total }
     var currentCount: Int { return starWarsPeople.count }
     
     func findPerson(at index: Int) -> People {
-      return starWarsPeople[index]
+        return starWarsPeople[index]
     }
     
     func fetchPeople() {
-        apiClient.fetchPeople(page: currentPage) { result in
+        apiClient.fetchPeople() { result in
             switch result {
-            
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.delegate?.fetchDidFail(with: error.description)
@@ -47,10 +45,10 @@ final class StarWarsViewModel {
             case .success(let response):
                 DispatchQueue.main.async {
                     self.total = response.count
+                    self.starWarsPeople.append(contentsOf: response.results)
                     self.delegate?.fetchDidSucceed()
                 }
             }
         }
     }
-    
 }

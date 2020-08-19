@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PagedResult: Decodable {
+struct RootResponse: Decodable {
     let count: Int
     let next: URL?
     let previous: URL?

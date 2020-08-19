@@ -9,21 +9,17 @@
 import UIKit
 
 final class APIClient {
-    private lazy var baseUrl: URL = {
+//    private lazy var baseUrl: URL = {
+//        let urlString = "https://swapi.dev/api/people/"
+//        guard let url = URL(string: urlString) else { fatalError("Error: \(urlString) is not a valid URL.") }
+//        return url
+//    }()
+    
+    func fetchPeople(completion: @escaping (Result<RootResponse, NetworkError>) -> Void) {
+        
         let urlString = "https://swapi.dev/api/people/"
-        guard let url = URL(string: urlString) else { fatalError("Error: \(urlString) is not a valid URL.") }
-        return url
-    }()
-    
-    //    let session: URLSession
-    //
-    //    init(session: URLSession = URLSession.shared) {
-    //        self.session = session
-    //    }
-    
-    var starWarsPeople: [People] = []
-    
-    func fetchPeople(page: Int, completion: @escaping (Result<PagedResult, NetworkError>) -> Void) {
+        guard let baseUrl = URL(string: urlString) else { print("Error: \(urlString) is not a valid URL.") ; return }
+        
         
         let urlRequest = URLRequest(url: baseUrl)
         //let urlRequest = URLRequest(url: baseUrl.appendingPathComponent(request.peoplePath))
@@ -32,7 +28,7 @@ final class APIClient {
             print("Fetching a list of Star Wars characters...")
             
             // Back to Main Thread
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
                 if error != nil {
                     completion(.failure(.requestFailed))
                 }
@@ -46,12 +42,16 @@ final class APIClient {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 do {
-                    let decodedResult = try decoder.decode(PagedResult.self, from: safeData)
-                    completion(Result.success(decodedResult))
+                    let decodedResponse = try decoder.decode(RootResponse.self, from: safeData)
+                    
+                    // Convert data to a string
+                    // let stringData = String(decoding: safeData, as: UTF8.self)
+                    
+                    completion(Result.success(decodedResponse))
                 } catch {
                     completion(Result.failure(.decodingFailed))
                 }
-            }
+            //}
         }.resume()
     }
 }
