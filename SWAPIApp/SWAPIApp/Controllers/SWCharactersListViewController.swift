@@ -84,13 +84,7 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
-        
-        if viewModel.currentCount < viewModel.totalCount {
-            viewModel.fetchPeople()
-            tableView.reloadData()
-        }
-        
-        
+        tableView.reloadData()
     }
     
     func fetchDidFail(with title: String, description: String) {

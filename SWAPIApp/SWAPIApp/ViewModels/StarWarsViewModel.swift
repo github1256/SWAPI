@@ -22,7 +22,16 @@ final class StarWarsViewModel {
     
     // MARK: - Variables and Properties
     
-    private var starWarsPeople: [People] = []
+    private var starWarsPeople: [People] = [] {
+        didSet {
+            // fetch next page of results until entire list if fetched
+            if currentCount < totalCount {
+                fetchPeople()
+            } else {
+                self.delegate?.fetchDidSucceed()
+            }
+        }
+    }
     private var currentPage = 1
     private var total = 0
     
@@ -49,15 +58,14 @@ final class StarWarsViewModel {
                 // perform on main thread to update UI
                 DispatchQueue.main.async {
                     
-                    // Increment the page number
+                    // increment the page number to fetch next page of results
                     self.currentPage += 1
                     
-                    // Store total # of characters on the server
-                    // Store latest fetched characters
+                    // store total # of characters on the server
                     self.total = response.count
-                    self.starWarsPeople.append(contentsOf: response.results)
                     
-                    self.delegate?.fetchDidSucceed()
+                    // store latest fetched characters
+                    self.starWarsPeople.append(contentsOf: response.results)
                 }
             }
         }

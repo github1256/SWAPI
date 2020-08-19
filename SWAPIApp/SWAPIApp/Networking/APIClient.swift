@@ -9,22 +9,13 @@
 import UIKit
 
 final class APIClient {
-    //    private lazy var baseUrl: URL = {
-    //        let urlString = "https://swapi.dev/api/people/"
-    //        guard let url = URL(string: urlString) else { fatalError("Error: \(urlString) is not a valid URL.") }
-    //        return url
-    //    }()
     
     func fetchPeople(page: Int, completion: @escaping (Result<RootResponse, NetworkError>) -> Void) {
         
-        let baseUrl = "httpss://swapi.dev/api/people/"
-        let urlString: String
+        let baseUrl = "https://swapi.dev/api/people/"
         
-        if page == 1 {
-            urlString = baseUrl
-        } else {
-            urlString = baseUrl + "?page=\(page)"
-        }
+        // create urlString depending on page to retrieve
+        let urlString = page == 1 ? baseUrl : baseUrl + "?page=\(page)"
         
         // check if URL is valid
         guard let url = URL(string: urlString) else {
@@ -33,9 +24,9 @@ final class APIClient {
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            print("Fetching a list of Star Wars characters from...", url)
+            print("Fetching list of Star Wars characters from:", url)
             
-            // Back to Main Thread
+            // back to main thread
             DispatchQueue.main.async {
                 if let error = error {
                     print(error.localizedDescription)
@@ -49,16 +40,14 @@ final class APIClient {
                         return
                 }
                 
-                //guard let safeData = data else { return }
-                
-                // If response is valid, decode JSON
+                // if response is valid, decode JSON
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 do {
                     let decodedResponse = try decoder.decode(RootResponse.self, from: safeData)
                     
-                    // Convert data to a string
+                    // convert data to a string to check response
                     // let stringData = String(decoding: safeData, as: UTF8.self)
                     
                     completion(Result.success(decodedResponse))
