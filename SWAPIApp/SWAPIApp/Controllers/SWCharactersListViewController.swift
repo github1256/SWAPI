@@ -32,11 +32,16 @@ class SWCharactersListViewController: UIViewController {
     
     // MARK: - Subviews
     
-    let indicatorView: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.startAnimating()
-        return indicator
+    let loadingView: LoadingView = {
+        let view = LoadingView()
+        return view
     }()
+    
+//    let activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView()
+//        indicator.startAnimating()
+//        return indicator
+//    }()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -50,25 +55,21 @@ class SWCharactersListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Star Wars Characters"
         
-        
-        
-        view.addSubview(tableView)
-        
-        view.addSubview(indicatorView)
+        [tableView, loadingView].forEach { view.addSubview($0) }
         setupLayouts()
     }
     
     private func setupLayouts() {
         tableView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
-        indicatorView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
-        indicatorView.center(in: view)
+        loadingView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        //loadingView.center(in: view)
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        tableView.isHidden = true
+        //tableView.isHidden = true
     }
     
 }
@@ -77,27 +78,13 @@ class SWCharactersListViewController: UIViewController {
 
 extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSource {
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if viewModel.currentCount == 0 {
-//            return 500
-//        } else {
-//            return 0
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return indicatorView
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.totalCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        
         cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
-
         return cell
     }
 }
@@ -106,7 +93,11 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
-        indicatorView.stopAnimating()
+        
+        //activityIndicator.stopAnimating()
+        
+        loadingView.removeFromSuperview()
+        
         tableView.isHidden = false
         tableView.reloadData()
     }

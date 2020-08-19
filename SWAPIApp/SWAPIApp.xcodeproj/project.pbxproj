@@ -23,6 +23,7 @@
 		93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7024ED64CF00BC88CD /* RootResponse.swift */; };
 		93926B7324ED706D00BC88CD /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7224ED706D00BC88CD /* AlertService.swift */; };
 		93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93926B7524ED756600BC88CD /* Default-568h@2x.png */; };
+		93926B7824EDA82700BC88CD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7724EDA82700BC88CD /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		93926B7024ED64CF00BC88CD /* RootResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootResponse.swift; sourceTree = "<group>"; };
 		93926B7224ED706D00BC88CD /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		93926B7524ED756600BC88CD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		93926B7724EDA82700BC88CD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				9316233724EC622700EF409C /* Constants */,
 				93926B7424ED707000BC88CD /* Services */,
 				9316232624EC583400EF409C /* Controllers */,
+				93926B7924EDA82A00BC88CD /* Views */,
 				9316233124EC5CD400EF409C /* Networking */,
 				9316232E24EC5B3600EF409C /* Extensions */,
 				93926B6D24ED5A6500BC88CD /* ViewModels */,
@@ -168,6 +171,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		93926B7924EDA82A00BC88CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93926B7724EDA82700BC88CD /* LoadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,6 +262,7 @@
 				93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */,
 				9316233624EC621F00EF409C /* Path.swift in Sources */,
 				9316233024EC5CD000EF409C /* APIClient.swift in Sources */,
+				93926B7824EDA82700BC88CD /* LoadingView.swift in Sources */,
 				9316231324EC56CA00EF409C /* AppDelegate.swift in Sources */,
 				93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */,
 				9316232D24EC5B3100EF409C /* UIView + Layout.swift in Sources */,
