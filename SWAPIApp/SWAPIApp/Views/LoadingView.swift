@@ -12,6 +12,12 @@ class LoadingView: UIView {
     
     // MARK: - Subviews
     
+    let blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        return blurView
+    }()
+    
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.startAnimating()
@@ -47,8 +53,17 @@ class LoadingView: UIView {
     // MARK: - Setup
     
     private func setupView() {
+        backgroundColor = .clear
+        
+        insertSubview(blurView, at: 0)
         addSubview(stackView)
         [label, activityIndicator].forEach { stackView.addArrangedSubview($0) }
+        
+        setupLayouts()
+    }
+    
+    private func setupLayouts() {
+        blurView.fillSuperview()
         stackView.center(in: self)
     }
 }

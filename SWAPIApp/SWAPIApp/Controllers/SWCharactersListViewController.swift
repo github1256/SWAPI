@@ -62,7 +62,6 @@ class SWCharactersListViewController: UIViewController {
     private func setupLayouts() {
         tableView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
         loadingView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
-        //loadingView.center(in: view)
     }
     
     private func setupTableView() {
@@ -84,7 +83,12 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
+        
+        if isLoadingCell(for: indexPath) {
+            cell.textLabel?.text = "loading..."
+        } else {
+            cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
+        }
         return cell
     }
 }
@@ -93,13 +97,12 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
-        
-        //activityIndicator.stopAnimating()
-        
-        loadingView.removeFromSuperview()
-        
-        tableView.isHidden = false
+        //loadingView.removeFromSuperview()
         tableView.reloadData()
+        
+        if viewModel.totalCount == viewModel.currentCount {
+            loadingView.removeFromSuperview()
+        }
     }
     
     func fetchDidFail(with title: String, description: String) {
@@ -109,8 +112,8 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
 
 
 
-//private extension SWCharactersListViewController {
-//    func isLoadingCell(for indexPath: IndexPath) -> Bool {
-//        return indexPath.row >= viewModel.currentCount
-//    }
-//}
+private extension SWCharactersListViewController {
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= viewModel.currentCount
+    }
+}
