@@ -96,12 +96,8 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        if isLoadingCell(for: indexPath) {
-            cell.textLabel?.text = "Nothing yet \(indexPath.row + 1)/\(viewModel.totalCount)"
-        } else {
-            cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
-        }
-        
+        cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
+
         return cell
     }
 }
@@ -122,8 +118,8 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
 
 
 
-private extension SWCharactersListViewController {
-    func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= viewModel.currentCount
-    }
-}
+//private extension SWCharactersListViewController {
+//    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+//        return indexPath.row >= viewModel.currentCount
+//    }
+//}

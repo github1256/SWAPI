@@ -28,6 +28,7 @@ final class StarWarsViewModel {
             if currentCount < totalCount {
                 fetchPeople()
             } else {
+                starWarsPeople.sort { $0.name < $1.name }
                 self.delegate?.fetchDidSucceed()
             }
         }
