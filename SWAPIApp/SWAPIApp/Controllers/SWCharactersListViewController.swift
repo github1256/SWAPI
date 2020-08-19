@@ -14,6 +14,7 @@ class SWCharactersListViewController: UIViewController {
     // MARK: - Variables and Properties
     
     private var viewModel: StarWarsViewModel!
+    private var heightForRow: CGFloat = 50
     
     // MARK: - Lifecycles
     
@@ -51,7 +52,6 @@ class SWCharactersListViewController: UIViewController {
     // MARK: - Setup
     
     private func setupViews() {
-        view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Star Wars Characters"
         
@@ -79,7 +79,12 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let swCharacterDetailView = SWCharacterDetailView()
         swCharacterDetailView.person = viewModel.findPerson(at: indexPath.row)
-        navigationController?.pushViewController(swCharacterDetailView, animated: true)
+        
+        let navController = UINavigationController(rootViewController: swCharacterDetailView)
+        
+        navigationController?.present(navController, animated: true, completion: nil)
+        
+        //navigationController?.pushViewController(swCharacterDetailView, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +100,10 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
             cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return heightForRow
     }
 }
 

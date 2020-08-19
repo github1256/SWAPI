@@ -25,6 +25,11 @@
 		93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93926B7524ED756600BC88CD /* Default-568h@2x.png */; };
 		93926B7824EDA82700BC88CD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7724EDA82700BC88CD /* LoadingView.swift */; };
 		93926B7F24EDBE9500BC88CD /* SWCharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7E24EDBE9500BC88CD /* SWCharacterDetailView.swift */; };
+		93926B8224EDC97300BC88CD /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8024EDC97300BC88CD /* CharacterCell.swift */; };
+		93926B8324EDC97300BC88CD /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93926B8124EDC97300BC88CD /* CharacterCell.xib */; };
+		93926B8524EDD0D300BC88CD /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8424EDD0D300BC88CD /* CharacterDetailView.swift */; };
+		93926B8724EDD11C00BC88CD /* CharacterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93926B8624EDD11C00BC88CD /* CharacterDetailView.xib */; };
+		93926B8924EDDDC300BC88CD /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8824EDDDC300BC88CD /* Film.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,11 @@
 		93926B7524ED756600BC88CD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		93926B7724EDA82700BC88CD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		93926B7E24EDBE9500BC88CD /* SWCharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWCharacterDetailView.swift; sourceTree = "<group>"; };
+		93926B8024EDC97300BC88CD /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		93926B8124EDC97300BC88CD /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
+		93926B8424EDD0D300BC88CD /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		93926B8624EDD11C00BC88CD /* CharacterDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailView.xib; sourceTree = "<group>"; };
+		93926B8824EDDDC300BC88CD /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				9316233224EC5D2600EF409C /* Person.swift */,
+				93926B8824EDDDC300BC88CD /* Film.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +189,10 @@
 			isa = PBXGroup;
 			children = (
 				93926B7724EDA82700BC88CD /* LoadingView.swift */,
+				93926B8424EDD0D300BC88CD /* CharacterDetailView.swift */,
+				93926B8624EDD11C00BC88CD /* CharacterDetailView.xib */,
+				93926B8024EDC97300BC88CD /* CharacterCell.swift */,
+				93926B8124EDC97300BC88CD /* CharacterCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,8 +263,10 @@
 			files = (
 				9316231F24EC56CB00EF409C /* LaunchScreen.storyboard in Resources */,
 				93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */,
+				93926B8324EDC97300BC88CD /* CharacterCell.xib in Resources */,
 				9316231C24EC56CB00EF409C /* Assets.xcassets in Resources */,
 				9316231A24EC56CA00EF409C /* Main.storyboard in Resources */,
+				93926B8724EDD11C00BC88CD /* CharacterDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,9 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93926B8524EDD0D300BC88CD /* CharacterDetailView.swift in Sources */,
 				9316231724EC56CA00EF409C /* SWCharactersListViewController.swift in Sources */,
 				93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */,
 				93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */,
+				93926B8224EDC97300BC88CD /* CharacterCell.swift in Sources */,
 				9316233624EC621F00EF409C /* Path.swift in Sources */,
 				9316233024EC5CD000EF409C /* APIClient.swift in Sources */,
 				93926B7824EDA82700BC88CD /* LoadingView.swift in Sources */,
@@ -271,6 +290,7 @@
 				93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */,
 				9316232D24EC5B3100EF409C /* UIView + Layout.swift in Sources */,
 				9316233324EC5D2600EF409C /* Person.swift in Sources */,
+				93926B8924EDDDC300BC88CD /* Film.swift in Sources */,
 				93926B7324ED706D00BC88CD /* AlertService.swift in Sources */,
 				9316231524EC56CA00EF409C /* SceneDelegate.swift in Sources */,
 			);

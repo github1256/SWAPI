@@ -17,12 +17,12 @@ struct Person: Codable {
     let height: String
     let mass: String
     let skinColor: String
-    let homeworld: String
+    //let homeworld: String
     let films: [URL]
-    let species: [URL]
-    let starships: [URL]
-    let vehicles: [URL]
-    let url: String
-    let created: String
-    let edited: String
+    //let species: [URL]
+    //let starships: [URL]
+    //let vehicles: [URL]
+    //let url: String
+    //let created: String
+    //let edited: String
 }
