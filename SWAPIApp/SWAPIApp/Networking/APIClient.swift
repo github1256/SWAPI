@@ -9,33 +9,47 @@
 import UIKit
 
 final class APIClient {
-//    private lazy var baseUrl: URL = {
-//        let urlString = "https://swapi.dev/api/people/"
-//        guard let url = URL(string: urlString) else { fatalError("Error: \(urlString) is not a valid URL.") }
-//        return url
-//    }()
+    //    private lazy var baseUrl: URL = {
+    //        let urlString = "https://swapi.dev/api/people/"
+    //        guard let url = URL(string: urlString) else { fatalError("Error: \(urlString) is not a valid URL.") }
+    //        return url
+    //    }()
     
-    func fetchPeople(completion: @escaping (Result<RootResponse, NetworkError>) -> Void) {
+    func fetchPeople(page: Int, completion: @escaping (Result<RootResponse, NetworkError>) -> Void) {
         
-        let urlString = "https://swapi.dev/api/people/"
-        guard let baseUrl = URL(string: urlString) else { print("Error: \(urlString) is not a valid URL.") ; return }
+        let baseUrl = "httpss://swapi.dev/api/people/"
+        let urlString: String
         
+        if page == 1 {
+            urlString = baseUrl
+        } else {
+            urlString = baseUrl + "?page=\(page)"
+        }
         
-        let urlRequest = URLRequest(url: baseUrl)
-        //let urlRequest = URLRequest(url: baseUrl.appendingPathComponent(request.peoplePath))
+        // check if URL is valid
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidUrl))
+            return
+        }
         
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            print("Fetching a list of Star Wars characters...")
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            print("Fetching a list of Star Wars characters from...", url)
             
             // Back to Main Thread
-            //DispatchQueue.main.async {
-                if error != nil {
-                    completion(.failure(.requestFailed))
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse,
+                    (200...299).contains(httpResponse.statusCode),
+                    let safeData = data
+                    else {
+                        completion(.failure(.requestFailed))
+                        return
                 }
                 
-                #warning("handle HTTPURLResponse")
-                
-                guard let safeData = data else { return }
+                //guard let safeData = data else { return }
                 
                 // If response is valid, decode JSON
                 let decoder = JSONDecoder()
@@ -51,7 +65,7 @@ final class APIClient {
                 } catch {
                     completion(Result.failure(.decodingFailed))
                 }
-            //}
+            }
         }.resume()
     }
 }

@@ -64,14 +64,14 @@ class SWCharactersListViewController: UIViewController {
 
 extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.totalCount
+        return viewModel.totalCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
         if isLoadingCell(for: indexPath) {
-            cell.textLabel?.text = "Nothing yet"
+            cell.textLabel?.text = "Nothing yet \(indexPath.row + 1)/\(viewModel.totalCount)"
         } else {
             cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
         }
@@ -84,11 +84,17 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
-        tableView.reloadData()
+        
+        if viewModel.currentCount < viewModel.totalCount {
+            viewModel.fetchPeople()
+            tableView.reloadData()
+        }
+        
+        
     }
     
-    func fetchDidFail(with reason: String) {
-        AlertService.showAlert(title: "Warning", message: reason, on: self)
+    func fetchDidFail(with title: String, description: String) {
+        AlertService.showAlert(title: title, message: description, on: self)
     }
 }
 

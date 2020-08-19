@@ -9,15 +9,18 @@
 import Foundation
 
 enum NetworkError: Error {
+    case invalidUrl
     case requestFailed
     case decodingFailed
-    
-    var description: String {
+
+    var reason: String {
         switch self {
+        case .invalidUrl:
+            return "Failed to fetch data from an invalid URL"
         case .requestFailed:
-            return "Failed to fetch data"
+            return "Network Failure: Failed to fetch data"
         case .decodingFailed:
-            return "Failed to decode data"
+            return "Network Failure: Failed to decode data"
         }
     }
 }

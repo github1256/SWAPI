@@ -10,7 +10,7 @@ import Foundation
 
 protocol StarWarsViewModelDelegate: class {
     func fetchDidSucceed()
-    func fetchDidFail(with reason: String)
+    func fetchDidFail(with title: String, description: String)
 }
 
 final class StarWarsViewModel {
@@ -19,7 +19,7 @@ final class StarWarsViewModel {
     init(delegate: StarWarsViewModelDelegate) {
         self.delegate = delegate
     }
-
+    
     // MARK: - Variables and Properties
     
     private var starWarsPeople: [People] = []
@@ -29,23 +29,34 @@ final class StarWarsViewModel {
     let apiClient = APIClient()
     
     var totalCount: Int { return total }
-    var currentCount: Int { return starWarsPeople.count }
+    var currentCount: Int {
+        return starWarsPeople.count
+    }
     
     func findPerson(at index: Int) -> People {
         return starWarsPeople[index]
     }
     
     func fetchPeople() {
-        apiClient.fetchPeople() { result in
+        apiClient.fetchPeople(page: currentPage) { result in
             switch result {
             case .failure(let error):
+                // perform on main thread to update UI
                 DispatchQueue.main.async {
-                    self.delegate?.fetchDidFail(with: error.description)
+                    self.delegate?.fetchDidFail(with: error.reason, description: error.localizedDescription)
                 }
             case .success(let response):
+                // perform on main thread to update UI
                 DispatchQueue.main.async {
+                    
+                    // Increment the page number
+                    self.currentPage += 1
+                    
+                    // Store total # of characters on the server
+                    // Store latest fetched characters
                     self.total = response.count
                     self.starWarsPeople.append(contentsOf: response.results)
+                    
                     self.delegate?.fetchDidSucceed()
                 }
             }
