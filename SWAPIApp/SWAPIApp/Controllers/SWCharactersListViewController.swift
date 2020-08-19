@@ -65,7 +65,7 @@ class SWCharactersListViewController: UIViewController {
 
 extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.totalCount
+        viewModel.currentCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
