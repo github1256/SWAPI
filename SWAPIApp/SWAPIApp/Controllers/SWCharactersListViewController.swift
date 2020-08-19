@@ -32,6 +32,12 @@ class SWCharactersListViewController: UIViewController {
     
     // MARK: - Subviews
     
+    let indicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.startAnimating()
+        return indicator
+    }()
+    
     let tableView: UITableView = {
         let table = UITableView()
         return table
@@ -44,18 +50,25 @@ class SWCharactersListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Star Wars Characters"
         
+        
+        
         view.addSubview(tableView)
+        
+        view.addSubview(indicatorView)
         setupLayouts()
     }
     
     private func setupLayouts() {
         tableView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        indicatorView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        indicatorView.center(in: view)
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
+        tableView.isHidden = true
     }
     
 }
@@ -63,6 +76,19 @@ class SWCharactersListViewController: UIViewController {
 // MARK: - TableView Delegate and Datasource
 
 extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if viewModel.currentCount == 0 {
+//            return 500
+//        } else {
+//            return 0
+//        }
+//    }
+//
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return indicatorView
+//    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.totalCount
     }
@@ -84,6 +110,8 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
+        indicatorView.stopAnimating()
+        tableView.isHidden = false
         tableView.reloadData()
     }
     
