@@ -26,7 +26,7 @@ class LoadingView: UIView {
     
     let label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(cgColor: #colorLiteral(red: 0.4470588235, green: 0.4705882353, blue: 0.5019607843, alpha: 1))
+        label.textColor = UIColor.systemGray
         label.text = "Loading characters..."
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)

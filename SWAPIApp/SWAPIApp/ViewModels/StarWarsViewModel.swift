@@ -22,18 +22,16 @@ final class StarWarsViewModel {
     
     // MARK: - Variables and Properties
     
-    private var starWarsPeople: [People] = [] {
+    private var starWarsPeople: [Person] = [] {
         didSet {
             // fetch next page of results until entire list if fetched
             if currentCount < totalCount {
                 fetchPeople()
             } else {
                 // sort alphabetically
-                starWarsPeople.sort { $0.name < $1.name }
+                self.starWarsPeople.sort { $0.name < $1.name }
                 self.delegate?.fetchDidSucceed()
             }
-            
-            self.delegate?.fetchDidSucceed()
         }
     }
     private var currentPage = 1
@@ -46,7 +44,7 @@ final class StarWarsViewModel {
         return starWarsPeople.count
     }
     
-    func findPerson(at index: Int) -> People {
+    func findPerson(at index: Int) -> Person {
         return starWarsPeople[index]
     }
     
@@ -70,6 +68,8 @@ final class StarWarsViewModel {
                     
                     // store latest fetched characters
                     self.starWarsPeople.append(contentsOf: response.results)
+                    
+                    self.delegate?.fetchDidSucceed()
                 }
             }
         }

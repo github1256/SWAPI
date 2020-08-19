@@ -16,7 +16,7 @@
 		9316232924EC593200EF409C /* TinyNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 9316232824EC593200EF409C /* TinyNetworking */; };
 		9316232D24EC5B3100EF409C /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232C24EC5B3100EF409C /* UIView + Layout.swift */; };
 		9316233024EC5CD000EF409C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232F24EC5CD000EF409C /* APIClient.swift */; };
-		9316233324EC5D2600EF409C /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316233224EC5D2600EF409C /* People.swift */; };
+		9316233324EC5D2600EF409C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316233224EC5D2600EF409C /* Person.swift */; };
 		9316233624EC621F00EF409C /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316233524EC621F00EF409C /* Path.swift */; };
 		93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6924ED597A00BC88CD /* NetworkError.swift */; };
 		93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */; };
@@ -24,6 +24,7 @@
 		93926B7324ED706D00BC88CD /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7224ED706D00BC88CD /* AlertService.swift */; };
 		93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93926B7524ED756600BC88CD /* Default-568h@2x.png */; };
 		93926B7824EDA82700BC88CD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7724EDA82700BC88CD /* LoadingView.swift */; };
+		93926B7F24EDBE9500BC88CD /* SWCharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7E24EDBE9500BC88CD /* SWCharacterDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +38,7 @@
 		9316232024EC56CB00EF409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9316232C24EC5B3100EF409C /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 		9316232F24EC5CD000EF409C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		9316233224EC5D2600EF409C /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		9316233224EC5D2600EF409C /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		9316233524EC621F00EF409C /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		93926B6924ED597A00BC88CD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsViewModel.swift; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		93926B7224ED706D00BC88CD /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		93926B7524ED756600BC88CD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		93926B7724EDA82700BC88CD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		93926B7E24EDBE9500BC88CD /* SWCharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWCharacterDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				9316231624EC56CA00EF409C /* SWCharactersListViewController.swift */,
+				93926B7E24EDBE9500BC88CD /* SWCharacterDetailView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -124,7 +127,7 @@
 		9316233424EC5D2F00EF409C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9316233224EC5D2600EF409C /* People.swift */,
+				9316233224EC5D2600EF409C /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -264,9 +267,10 @@
 				9316233024EC5CD000EF409C /* APIClient.swift in Sources */,
 				93926B7824EDA82700BC88CD /* LoadingView.swift in Sources */,
 				9316231324EC56CA00EF409C /* AppDelegate.swift in Sources */,
+				93926B7F24EDBE9500BC88CD /* SWCharacterDetailView.swift in Sources */,
 				93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */,
 				9316232D24EC5B3100EF409C /* UIView + Layout.swift in Sources */,
-				9316233324EC5D2600EF409C /* People.swift in Sources */,
+				9316233324EC5D2600EF409C /* Person.swift in Sources */,
 				93926B7324ED706D00BC88CD /* AlertService.swift in Sources */,
 				9316231524EC56CA00EF409C /* SceneDelegate.swift in Sources */,
 			);

@@ -68,7 +68,6 @@ class SWCharactersListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        //tableView.isHidden = true
     }
     
 }
@@ -76,6 +75,12 @@ class SWCharactersListViewController: UIViewController {
 // MARK: - TableView Delegate and Datasource
 
 extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let swCharacterDetailView = SWCharacterDetailView()
+        swCharacterDetailView.person = viewModel.findPerson(at: indexPath.row)
+        navigationController?.pushViewController(swCharacterDetailView, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.totalCount
@@ -97,7 +102,7 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
-        //loadingView.removeFromSuperview()
+//        loadingView.removeFromSuperview()
         tableView.reloadData()
         
         if viewModel.totalCount == viewModel.currentCount {

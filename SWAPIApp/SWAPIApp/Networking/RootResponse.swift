@@ -12,5 +12,5 @@ struct RootResponse: Decodable {
     let count: Int
     let next: URL?
     let previous: URL?
-    let results: [People]
+    let results: [Person]
 }

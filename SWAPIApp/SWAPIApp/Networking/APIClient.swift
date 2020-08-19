@@ -27,7 +27,7 @@ final class APIClient {
             print("Fetching list of Star Wars characters from:", url)
             
             // back to main thread
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
                 if let error = error {
                     print(error.localizedDescription)
                 }
@@ -54,7 +54,7 @@ final class APIClient {
                 } catch {
                     completion(Result.failure(.decodingFailed))
                 }
-            }
+            //}
         }.resume()
     }
 }
