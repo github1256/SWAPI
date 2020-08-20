@@ -8,23 +8,6 @@
 
 import UIKit
 
-enum HeaderSection: Int, CaseIterable {
-    case name, dateOfBirth, physicalAttributes, films
-    
-    static func numberOfSections() -> Int {
-        return self.allCases.count
-    }
-    
-    var title: String {
-        switch self {
-        case .name: return "Name"
-        case .dateOfBirth: return "Date of Birth"
-        case .physicalAttributes: return "Physical Attributes"
-        case .films: return "Films"
-        }
-    }
-}
-
 class SWCharacterDetailView: UIViewController {
     
     // MARK: - Variables and Properties
@@ -47,12 +30,14 @@ class SWCharacterDetailView: UIViewController {
         view.backgroundColor = .white
         view.frame = self.view.bounds
         view.contentSize = contentViewSize
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return view
     }()
     
     lazy var characterDetailView: CharacterDetailView = {
         let view = CharacterDetailView()
         view.frame.size = contentViewSize
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return view
     }()
     
@@ -74,11 +59,11 @@ class SWCharacterDetailView: UIViewController {
     private func setupViews() {
         [scrollView].forEach { view.addSubview($0) }
         scrollView.addSubview(characterDetailView)
-        setupLayouts()
+        //setupLayouts()
     }
     
     private func setupLayouts() {
-//        characterDetailView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        //
     }
     
     private func setupTitleView() {

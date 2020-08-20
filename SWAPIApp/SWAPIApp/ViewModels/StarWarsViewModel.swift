@@ -50,9 +50,7 @@ final class StarWarsViewModel {
         return starWarsPeople[index]
     }
     
-    func findFilms() -> [Film] {
-        return films
-    }
+    func findFilms() -> [Film] { return films }
     
     // MARK: - Fetch Data
     

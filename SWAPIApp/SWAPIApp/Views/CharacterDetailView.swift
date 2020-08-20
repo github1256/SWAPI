@@ -42,7 +42,9 @@ class CharacterDetailView: UIView {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var filmsLabel: UILabel! {
         didSet {
-            if films.isEmpty { filmsLabel.isHidden = true }
+            if films.isEmpty {
+                filmsLabel.text = ""
+            }
             filmsLabel.numberOfLines = 0
         }
     }
@@ -82,7 +84,7 @@ class CharacterDetailView: UIView {
     deinit {
         print("CharacterDetailView memory being reclaimed...")
     }
-
+    
 }
 
 // MARK: - StarWarsViewModelDelegate
@@ -93,29 +95,29 @@ extension CharacterDetailView: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
         let films = viewModel.findFilms()
         
-        // if all film data has been fetched
+        // check if all film data has been fetched
         if person.films.count == films.count {
             var filmTuples: [FilmTuple] = []
             films.forEach { film in
-                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
                 
+                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
             }
             
-            print(filmTuples)
+            
+            filmsLabel.text = filmTuples.map {
+                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
+            }.joined(separator: "\n")
             
             
             
-            //films.forEach { titles.append($0.title) }
-            //filmsLabel.text = titles.joined(separator: "\n")
             
             
             
             
-            filmsLabel.isHidden = false
         }
     }
     
     func fetchDidFail(with title: String, description: String) {
-//        AlertService.showAlert(title: title, message: description, on: self)
+        //        AlertService.showAlert(title: title, message: description, on: self)
     }
 }

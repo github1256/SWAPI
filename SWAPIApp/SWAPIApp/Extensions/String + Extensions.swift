@@ -19,7 +19,7 @@ extension String {
         return words.count
     }
     
-    func customizeString(color: UIColor, fontSize: CGFloat, weight: UIFont.Weight) -> NSMutableAttributedString {
+    func customizeString(color: UIColor = .black, fontSize: CGFloat = 16.0, weight: UIFont.Weight = .regular) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: self, attributes:
             [
                 NSAttributedString.Key.foregroundColor: color,
