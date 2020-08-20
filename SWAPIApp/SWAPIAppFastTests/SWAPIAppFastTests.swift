@@ -11,7 +11,7 @@ import XCTest
 
 class SWAPIAppFastTests: XCTestCase {
     
-    // MARK: - Word Count Extension
+    // MARK: - Fast Tests: Word Count Extension
     
     func testWordCountExtensionReturnsCorrectCount() {
         let wordCount = SampleText.sampleOpeningCrawl.wordCount

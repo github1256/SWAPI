@@ -16,6 +16,7 @@
 		9316233024EC5CD000EF409C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232F24EC5CD000EF409C /* APIClient.swift */; };
 		9316233324EC5D2600EF409C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316233224EC5D2600EF409C /* Person.swift */; };
 		931ABFA424EF3D7E000148B2 /* SWAPIAppFastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFA324EF3D7E000148B2 /* SWAPIAppFastTests.swift */; };
+		931ABFB224EF3E84000148B2 /* SWAPIAppFakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFB124EF3E84000148B2 /* SWAPIAppFakeTests.swift */; };
 		93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6924ED597A00BC88CD /* NetworkError.swift */; };
 		93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */; };
 		93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7024ED64CF00BC88CD /* RootResponse.swift */; };
@@ -34,6 +35,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		931ABFA624EF3D7E000148B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9316230724EC56C900EF409C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9316230E24EC56C900EF409C;
+			remoteInfo = SWAPIApp;
+		};
+		931ABFB424EF3E84000148B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9316230724EC56C900EF409C /* Project object */;
 			proxyType = 1;
@@ -63,6 +71,9 @@
 		931ABFA124EF3D7D000148B2 /* SWAPIAppFastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAPIAppFastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		931ABFA324EF3D7E000148B2 /* SWAPIAppFastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIAppFastTests.swift; sourceTree = "<group>"; };
 		931ABFA524EF3D7E000148B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		931ABFAF24EF3E84000148B2 /* SWAPIAppFakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAPIAppFakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		931ABFB124EF3E84000148B2 /* SWAPIAppFakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIAppFakeTests.swift; sourceTree = "<group>"; };
+		931ABFB324EF3E84000148B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93926B6924ED597A00BC88CD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsViewModel.swift; sourceTree = "<group>"; };
 		93926B7024ED64CF00BC88CD /* RootResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootResponse.swift; sourceTree = "<group>"; };
@@ -96,6 +107,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		931ABFAC24EF3E84000148B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93C3BC9C24EEEB880088C9A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,6 +131,7 @@
 				9316231124EC56CA00EF409C /* SWAPIApp */,
 				93C3BCA024EEEB880088C9A1 /* SWAPIAppTests */,
 				931ABFA224EF3D7E000148B2 /* SWAPIAppFastTests */,
+				931ABFB024EF3E84000148B2 /* SWAPIAppFakeTests */,
 				9316231024EC56CA00EF409C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +142,7 @@
 				9316230F24EC56CA00EF409C /* SWAPIApp.app */,
 				93C3BC9F24EEEB880088C9A1 /* SWAPIAppTests.xctest */,
 				931ABFA124EF3D7D000148B2 /* SWAPIAppFastTests.xctest */,
+				931ABFAF24EF3E84000148B2 /* SWAPIAppFakeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,6 +210,15 @@
 				931ABFA524EF3D7E000148B2 /* Info.plist */,
 			);
 			path = SWAPIAppFastTests;
+			sourceTree = "<group>";
+		};
+		931ABFB024EF3E84000148B2 /* SWAPIAppFakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				931ABFB124EF3E84000148B2 /* SWAPIAppFakeTests.swift */,
+				931ABFB324EF3E84000148B2 /* Info.plist */,
+			);
+			path = SWAPIAppFakeTests;
 			sourceTree = "<group>";
 		};
 		93926B6724ED587100BC88CD /* Resources */ = {
@@ -285,6 +314,24 @@
 			productReference = 931ABFA124EF3D7D000148B2 /* SWAPIAppFastTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		931ABFAE24EF3E84000148B2 /* SWAPIAppFakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 931ABFB624EF3E84000148B2 /* Build configuration list for PBXNativeTarget "SWAPIAppFakeTests" */;
+			buildPhases = (
+				931ABFAB24EF3E84000148B2 /* Sources */,
+				931ABFAC24EF3E84000148B2 /* Frameworks */,
+				931ABFAD24EF3E84000148B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				931ABFB524EF3E84000148B2 /* PBXTargetDependency */,
+			);
+			name = SWAPIAppFakeTests;
+			productName = SWAPIAppFakeTests;
+			productReference = 931ABFAF24EF3E84000148B2 /* SWAPIAppFakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		93C3BC9E24EEEB880088C9A1 /* SWAPIAppTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93C3BCA624EEEB880088C9A1 /* Build configuration list for PBXNativeTarget "SWAPIAppTests" */;
@@ -320,6 +367,10 @@
 						CreatedOnToolsVersion = 11.6;
 						TestTargetID = 9316230E24EC56C900EF409C;
 					};
+					931ABFAE24EF3E84000148B2 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 9316230E24EC56C900EF409C;
+					};
 					93C3BC9E24EEEB880088C9A1 = {
 						CreatedOnToolsVersion = 11.6;
 						TestTargetID = 9316230E24EC56C900EF409C;
@@ -344,6 +395,7 @@
 				9316230E24EC56C900EF409C /* SWAPIApp */,
 				93C3BC9E24EEEB880088C9A1 /* SWAPIAppTests */,
 				931ABFA024EF3D7D000148B2 /* SWAPIAppFastTests */,
+				931ABFAE24EF3E84000148B2 /* SWAPIAppFakeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -361,6 +413,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		931ABF9F24EF3D7D000148B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931ABFAD24EF3E84000148B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -409,6 +468,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		931ABFAB24EF3E84000148B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931ABFB224EF3E84000148B2 /* SWAPIAppFakeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93C3BC9B24EEEB880088C9A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,6 +491,11 @@
 			isa = PBXTargetDependency;
 			target = 9316230E24EC56C900EF409C /* SWAPIApp */;
 			targetProxy = 931ABFA624EF3D7E000148B2 /* PBXContainerItemProxy */;
+		};
+		931ABFB524EF3E84000148B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9316230E24EC56C900EF409C /* SWAPIApp */;
+			targetProxy = 931ABFB424EF3E84000148B2 /* PBXContainerItemProxy */;
 		};
 		93C3BCA524EEEB880088C9A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -634,6 +706,46 @@
 			};
 			name = Release;
 		};
+		931ABFB724EF3E84000148B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5L5S7CN8F;
+				INFOPLIST_FILE = SWAPIAppFakeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prsclla.SWAPIAppFakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWAPIApp.app/SWAPIApp";
+			};
+			name = Debug;
+		};
+		931ABFB824EF3E84000148B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5L5S7CN8F;
+				INFOPLIST_FILE = SWAPIAppFakeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prsclla.SWAPIAppFakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWAPIApp.app/SWAPIApp";
+			};
+			name = Release;
+		};
 		93C3BCA724EEEB880088C9A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -700,6 +812,15 @@
 			buildConfigurations = (
 				931ABFA824EF3D7E000148B2 /* Debug */,
 				931ABFA924EF3D7E000148B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		931ABFB624EF3E84000148B2 /* Build configuration list for PBXNativeTarget "SWAPIAppFakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				931ABFB724EF3E84000148B2 /* Debug */,
+				931ABFB824EF3E84000148B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
