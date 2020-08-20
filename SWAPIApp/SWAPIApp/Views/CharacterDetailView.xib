@@ -158,6 +158,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="HV6-E1-Zd0" secondAttribute="trailing" constant="32" id="Bma-rp-CQ9"/>
                         <constraint firstItem="HV6-E1-Zd0" firstAttribute="leading" secondItem="F4p-ej-RTb" secondAttribute="leading" constant="32" id="GL5-ld-CNu"/>
+                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="HV6-E1-Zd0" secondAttribute="bottom" constant="32" id="ZEX-Gp-D1y"/>
                         <constraint firstItem="HV6-E1-Zd0" firstAttribute="top" secondItem="F4p-ej-RTb" secondAttribute="top" constant="32" id="v2b-z1-lUX"/>
                     </constraints>
                 </view>

@@ -13,7 +13,7 @@ class CharacterDetailView: UIView {
     // MARK: - Variables and Properties
     
     private var viewModel: StarWarsViewModel!
-    var films: [Film]!
+    var films: [Film] = []
     var person: Person! {
         didSet {
             viewModel = StarWarsViewModel(delegate: self)
@@ -42,6 +42,7 @@ class CharacterDetailView: UIView {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var filmsLabel: UILabel! {
         didSet {
+            if films.isEmpty { filmsLabel.isHidden = true }
             filmsLabel.numberOfLines = 0
         }
     }
@@ -86,15 +87,31 @@ class CharacterDetailView: UIView {
 
 // MARK: - StarWarsViewModelDelegate
 
+typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
+
 extension CharacterDetailView: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
         let films = viewModel.findFilms()
         
         // if all film data has been fetched
         if person.films.count == films.count {
-            var titles: [String] = []
-            films.forEach { titles.append($0.title) }
-            filmsLabel.text = titles.joined(separator: "\n")
+            var filmTuples: [FilmTuple] = []
+            films.forEach { film in
+                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
+                
+            }
+            
+            print(filmTuples)
+            
+            
+            
+            //films.forEach { titles.append($0.title) }
+            //filmsLabel.text = titles.joined(separator: "\n")
+            
+            
+            
+            
+            filmsLabel.isHidden = false
         }
     }
     
