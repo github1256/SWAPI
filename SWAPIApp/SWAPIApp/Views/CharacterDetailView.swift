@@ -12,7 +12,7 @@ class CharacterDetailView: UIView {
     
     // MARK: - Variables and Properties
     
-    private var viewModel: StarWarsViewModel!
+    private var viewModel: StarWarsViewModel?
     var films: [Film] = []
     var person: Person! {
         didSet {

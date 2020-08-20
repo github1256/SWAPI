@@ -20,7 +20,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="UCD-Ab-A2a" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4lX-2t-QOp"/>
                             <constraint firstItem="UCD-Ab-A2a" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.25" id="Za9-Od-VT2"/>

@@ -12,13 +12,13 @@ class SWCharacterDetailViewController: UIViewController {
     
     // MARK: - Variables and Properties
     
-    private var viewModel: StarWarsViewModel!
+    private var viewModel: StarWarsViewModel?
     var films: [Film] = []
     var person: Person! {
         didSet {
             viewModel = StarWarsViewModel(delegate: self)
             person.films.forEach { filmUrl in
-                viewModel.fetchFilm(with: filmUrl)
+                viewModel?.fetchFilm(with: filmUrl)
             }
             characterDetailView.person = self.person
 
@@ -95,10 +95,10 @@ extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
 
         // Update the UI if all the film data has been fetched
-        let films = viewModel.findFilms()
+        let films = viewModel?.findFilms()
         var filmTuples: [FilmTuple] = []
-        if person.films.count == films.count {
-            films.forEach {
+        if person.films.count == films?.count {
+            films?.forEach {
                 filmTuples.append(FilmTuple(title: $0.title, openingCrawlWordCount: $0.openingCrawl.wordCount))
             }
             // For every film, create a string with its title and opening crawl word count
