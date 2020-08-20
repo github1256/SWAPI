@@ -11,8 +11,19 @@ import UIKit
 // Final Declaration to prevent inheritance from other classes
 final class APIClient {
     
+    var cachedUrl: URL?
+    let session: URLSession
+    
+    init(session: URLSession = URLSession.shared) {
+      self.session = session
+    }
+    
     func fetchFilm(with url: URL, completion: @escaping (Result<Film, NetworkError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        
+        self.cachedUrl = url
+        
+        session.dataTask(with: url) { (data, response, error) in
+            
             // Back to main thread
             DispatchQueue.main.async {
                 if let error = error {
@@ -55,7 +66,10 @@ final class APIClient {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        self.cachedUrl = url
+
+        session.dataTask(with: url) { (data, response, error) in
+            
             // Back to main thread
             DispatchQueue.main.async {
                 if let error = error {

@@ -28,7 +28,18 @@
 		93926B8B24EDEC4300BC88CD /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8A24EDEC4300BC88CD /* String + Extensions.swift */; };
 		93C3BC9824EE457F0088C9A1 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BC9724EE457F0088C9A1 /* CharacterCell.swift */; };
 		93C3BC9A24EE54000088C9A1 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BC9924EE54000088C9A1 /* UIColor + Extensions.swift */; };
+		93C3BCA224EEEB880088C9A1 /* SWAPIAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BCA124EEEB880088C9A1 /* SWAPIAppTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		93C3BCA424EEEB880088C9A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9316230724EC56C900EF409C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9316230E24EC56C900EF409C;
+			remoteInfo = SWAPIApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9316230F24EC56CA00EF409C /* SWAPIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWAPIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,10 +65,20 @@
 		93926B8A24EDEC4300BC88CD /* String + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extensions.swift"; sourceTree = "<group>"; };
 		93C3BC9724EE457F0088C9A1 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		93C3BC9924EE54000088C9A1 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
+		93C3BC9F24EEEB880088C9A1 /* SWAPIAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAPIAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		93C3BCA124EEEB880088C9A1 /* SWAPIAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIAppTests.swift; sourceTree = "<group>"; };
+		93C3BCA324EEEB880088C9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9316230C24EC56C900EF409C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93C3BC9C24EEEB880088C9A1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,6 +93,7 @@
 			children = (
 				93926B7524ED756600BC88CD /* Default-568h@2x.png */,
 				9316231124EC56CA00EF409C /* SWAPIApp */,
+				93C3BCA024EEEB880088C9A1 /* SWAPIAppTests */,
 				9316231024EC56CA00EF409C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				9316230F24EC56CA00EF409C /* SWAPIApp.app */,
+				93C3BC9F24EEEB880088C9A1 /* SWAPIAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +207,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		93C3BCA024EEEB880088C9A1 /* SWAPIAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				93C3BCA124EEEB880088C9A1 /* SWAPIAppTests.swift */,
+				93C3BCA324EEEB880088C9A1 /* Info.plist */,
+			);
+			path = SWAPIAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,6 +238,24 @@
 			productReference = 9316230F24EC56CA00EF409C /* SWAPIApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		93C3BC9E24EEEB880088C9A1 /* SWAPIAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93C3BCA624EEEB880088C9A1 /* Build configuration list for PBXNativeTarget "SWAPIAppTests" */;
+			buildPhases = (
+				93C3BC9B24EEEB880088C9A1 /* Sources */,
+				93C3BC9C24EEEB880088C9A1 /* Frameworks */,
+				93C3BC9D24EEEB880088C9A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				93C3BCA524EEEB880088C9A1 /* PBXTargetDependency */,
+			);
+			name = SWAPIAppTests;
+			productName = SWAPIAppTests;
+			productReference = 93C3BC9F24EEEB880088C9A1 /* SWAPIAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +268,10 @@
 				TargetAttributes = {
 					9316230E24EC56C900EF409C = {
 						CreatedOnToolsVersion = 11.6;
+					};
+					93C3BC9E24EEEB880088C9A1 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 9316230E24EC56C900EF409C;
 					};
 				};
 			};
@@ -237,6 +291,7 @@
 			projectRoot = "";
 			targets = (
 				9316230E24EC56C900EF409C /* SWAPIApp */,
+				93C3BC9E24EEEB880088C9A1 /* SWAPIAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -250,6 +305,13 @@
 				93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */,
 				9316231C24EC56CB00EF409C /* Assets.xcassets in Resources */,
 				93926B8724EDD11C00BC88CD /* CharacterDetailView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93C3BC9D24EEEB880088C9A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +342,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93C3BC9B24EEEB880088C9A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93C3BCA224EEEB880088C9A1 /* SWAPIAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		93C3BCA524EEEB880088C9A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9316230E24EC56C900EF409C /* SWAPIApp */;
+			targetProxy = 93C3BCA424EEEB880088C9A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9316231D24EC56CB00EF409C /* LaunchScreen.storyboard */ = {
@@ -444,6 +522,46 @@
 			};
 			name = Release;
 		};
+		93C3BCA724EEEB880088C9A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5L5S7CN8F;
+				INFOPLIST_FILE = SWAPIAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prsclla.SWAPIAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWAPIApp.app/SWAPIApp";
+			};
+			name = Debug;
+		};
+		93C3BCA824EEEB880088C9A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5L5S7CN8F;
+				INFOPLIST_FILE = SWAPIAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prsclla.SWAPIAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWAPIApp.app/SWAPIApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -461,6 +579,15 @@
 			buildConfigurations = (
 				9316232424EC56CB00EF409C /* Debug */,
 				9316232524EC56CB00EF409C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93C3BCA624EEEB880088C9A1 /* Build configuration list for PBXNativeTarget "SWAPIAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93C3BCA724EEEB880088C9A1 /* Debug */,
+				93C3BCA824EEEB880088C9A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
