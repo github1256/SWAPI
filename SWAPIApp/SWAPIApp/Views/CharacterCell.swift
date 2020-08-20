@@ -25,7 +25,7 @@ class CharacterCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Customize
+        // Customize cell when selected
         let backgroundView = UIView()
         backgroundView.backgroundColor = #colorLiteral(red: 1, green: 0.8941176471, blue: 0, alpha: 1)
         selectedBackgroundView = backgroundView

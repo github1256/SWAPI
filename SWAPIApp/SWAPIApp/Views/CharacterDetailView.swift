@@ -16,10 +16,26 @@ class CharacterDetailView: UIView {
     var films: [Film] = []
     var person: Person! {
         didSet {
-            setupActivityIndicator()
+            //setupActivityIndicator()
             configureLabels()
         }
     }
+    
+    @IBOutlet var containerView: UIView!
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var massLabel: UILabel!
+    @IBOutlet weak var hairColorLabel: UILabel!
+    @IBOutlet weak var skinColorLabel: UILabel!
+    @IBOutlet weak var eyeColorLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var filmsLabel: UILabel! {
+        didSet {
+            filmsLabel.text = ""
+            filmsLabel.numberOfLines = 0
+        }
+    }
+    
+    // MARK: - Setup and Configuration
     
     fileprivate func configureLabels() {
         heightLabel.text = person.height
@@ -33,26 +49,6 @@ class CharacterDetailView: UIView {
     private func setupActivityIndicator() {
         filmsLabel.addSubview(activityIndicator)
         activityIndicator.anchor(top: filmsLabel.topAnchor, leading: filmsLabel.leadingAnchor, bottom: filmsLabel.bottomAnchor, trailing: filmsLabel.trailingAnchor)
-    }
-    
-    @IBOutlet var containerView: UIView!
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var massLabel: UILabel!
-    @IBOutlet weak var hairColorLabel: UILabel!
-    @IBOutlet weak var skinColorLabel: UILabel!
-    @IBOutlet weak var eyeColorLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var filmsLabel: UILabel! {
-        didSet {
-            
-            
-            
-            
-            
-            
-            filmsLabel.text = ""
-            filmsLabel.numberOfLines = 0
-        }
     }
     
     // MARK: - Subviews

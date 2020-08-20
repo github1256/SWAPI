@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Combine
 
 class SWCharactersListViewController: UIViewController {
     
@@ -19,11 +18,24 @@ class SWCharactersListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewModel = StarWarsViewModel(delegate: self)
         viewModel.fetchPeople()
         
         setupViews()
         setupTableView()
+        
+        // MARK: - Dispatch Groups
+        
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.notify(queue: .main) {
+            print("Finished fetching characters.")
+        }
+        
+        
+        
+        
     }
     
     // MARK: - Subviews
@@ -41,7 +53,6 @@ class SWCharactersListViewController: UIViewController {
     // MARK: - Setup
     
     private func setupViews() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Star Wars Characters"
         
         [tableView, loadingView].forEach { view.addSubview($0) }
@@ -68,8 +79,10 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let swCharacterDetailViewController = SWCharacterDetailViewController()
         swCharacterDetailViewController.person = viewModel.findPerson(at: indexPath.row)
+        
         let navController = UINavigationController(rootViewController: swCharacterDetailViewController)
         navigationController?.present(navController, animated: true, completion: nil)
+        //navigationController?.pushViewController(swCharacterDetailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

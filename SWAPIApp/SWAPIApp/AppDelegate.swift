@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if #available(iOS 13.0, *) {
-            UINavigationBar.appearance().tintColor = UIColor.appColor(AssetsColor.tintColor)
+            UINavigationBar.appearance().prefersLargeTitles = true
+            UINavigationBar.appearance().tintColor = UIColor.appColor(.tintColor)
         }
         
         return true
