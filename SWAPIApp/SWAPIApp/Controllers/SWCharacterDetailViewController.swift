@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SWCharacterDetailView: UIViewController {
+class SWCharacterDetailViewController: UIViewController {
     
     // MARK: - Variables and Properties
     
@@ -16,22 +16,19 @@ class SWCharacterDetailView: UIViewController {
     var films: [Film] = []
     var person: Person! {
         didSet {
-            
             viewModel = StarWarsViewModel(delegate: self)
-            person.films.forEach { (filmUrl) in
-                viewModel.fetchFilms(with: filmUrl)
+            person.films.forEach { filmUrl in
+                viewModel.fetchFilm(with: filmUrl)
             }
-            
-            
-            
             characterDetailView.person = self.person
-            setupTitleView()
+
             setupViews()
+            setupTitleView()
             setupNavigationBarButtons()
         }
     }
-    
-    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
+    typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
+    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 200)
     
     // MARK: - Subviews
     
@@ -67,7 +64,7 @@ class SWCharacterDetailView: UIViewController {
     // MARK: - Setup
     
     private func setupViews() {
-        [scrollView].forEach { view.addSubview($0) }
+        view.addSubview(scrollView)
         scrollView.addSubview(characterDetailView)
     }
 
@@ -93,31 +90,23 @@ class SWCharacterDetailView: UIViewController {
 
 // MARK: - StarWarsViewModelDelegate
 
-typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
-
-extension SWCharacterDetailView: StarWarsViewModelDelegate {
+extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
+
+        // Update the UI if all the film data has been fetched
         let films = viewModel.findFilms()
-        
-        // check if all film data has been fetched
+        var filmTuples: [FilmTuple] = []
         if person.films.count == films.count {
-            var filmTuples: [FilmTuple] = []
-            films.forEach { film in
-                
-                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
+            films.forEach {
+                filmTuples.append(FilmTuple(title: $0.title, openingCrawlWordCount: $0.openingCrawl.wordCount))
             }
+            // For every film, create a string with its title and opening crawl word count
+            // Create a separate line for each film
+            characterDetailView.filmsLabel.text = filmTuples.map {
+                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
+            }.joined(separator: "\n")
             
-            
-//            filmsLabel.text = filmTuples.map {
-//                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
-//            }.joined(separator: "\n")
-            
-            
-            
-            
-            
-            
-            
+            characterDetailView.activityIndicator.stopAnimating()
         }
     }
     

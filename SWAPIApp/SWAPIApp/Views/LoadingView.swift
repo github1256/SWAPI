@@ -12,6 +12,8 @@ class LoadingView: UIView {
     
     // MARK: - Subviews
     
+    // Add a blurred background so that user can see the TableView loading.
+    // This leads to a better user experience for long network calls.
     let blurView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -40,6 +42,8 @@ class LoadingView: UIView {
         stackView.spacing = 32
         return stackView
     }()
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)

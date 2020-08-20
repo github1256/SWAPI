@@ -36,7 +36,6 @@ final class APIClient {
             } catch {
                 completion(Result.failure(.decodingFailed))
             }
-            //}
         }.resume()
     }
     

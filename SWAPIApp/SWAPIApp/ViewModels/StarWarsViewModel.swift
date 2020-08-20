@@ -81,7 +81,7 @@ final class StarWarsViewModel {
         }
     }
     
-    func fetchFilms(with url: URL) {
+    func fetchFilm(with url: URL) {
         apiClient.fetchFilm(with: url) { result in
             switch result {
             case .failure(let error):

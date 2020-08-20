@@ -16,10 +16,7 @@ class CharacterDetailView: UIView {
     var films: [Film] = []
     var person: Person! {
         didSet {
-//            viewModel = StarWarsViewModel(delegate: self)
-//            person.films.forEach { (filmUrl) in
-//                viewModel.fetchFilms(with: filmUrl)
-//            }
+            setupActivityIndicator()
             configureLabels()
         }
     }
@@ -33,6 +30,11 @@ class CharacterDetailView: UIView {
         genderLabel.text = person.gender
     }
     
+    private func setupActivityIndicator() {
+        filmsLabel.addSubview(activityIndicator)
+        activityIndicator.anchor(top: filmsLabel.topAnchor, leading: filmsLabel.leadingAnchor, bottom: filmsLabel.bottomAnchor, trailing: filmsLabel.trailingAnchor)
+    }
+    
     @IBOutlet var containerView: UIView!
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var massLabel: UILabel!
@@ -42,12 +44,26 @@ class CharacterDetailView: UIView {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var filmsLabel: UILabel! {
         didSet {
-            if films.isEmpty {
-                filmsLabel.text = ""
-            }
+            
+            
+            
+            
+            
+            
+            filmsLabel.text = ""
             filmsLabel.numberOfLines = 0
         }
     }
+    
+    // MARK: - Subviews
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.startAnimating()
+        return indicator
+    }()
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,45 +94,5 @@ class CharacterDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    deinit {
-        print("CharacterDetailView memory being reclaimed...")
-    }
-    
-}
 
-//// MARK: - StarWarsViewModelDelegate
-//
-//typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
-//
-//extension CharacterDetailView: StarWarsViewModelDelegate {
-//    func fetchDidSucceed() {
-//        let films = viewModel.findFilms()
-//        
-//        // check if all film data has been fetched
-//        if person.films.count == films.count {
-//            var filmTuples: [FilmTuple] = []
-//            films.forEach { film in
-//                
-//                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
-//            }
-//            
-//            
-//            filmsLabel.text = filmTuples.map {
-//                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
-//            }.joined(separator: "\n")
-//            
-//            
-//            
-//            
-//            
-//            
-//            
-//        }
-//    }
-//    
-//    func fetchDidFail(with title: String, description: String) {
-//        #warning("T##message##")
-//        //AlertService.showAlert(title: title, message: description, on: self)
-//    }
-//}
+}

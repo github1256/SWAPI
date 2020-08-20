@@ -26,10 +26,6 @@ class SWCharactersListViewController: UIViewController {
         setupTableView()
     }
     
-    deinit {
-        print("ViewController memory being reclaimed...")
-    }
-    
     // MARK: - Subviews
     
     let loadingView: LoadingView = {
@@ -70,9 +66,9 @@ class SWCharactersListViewController: UIViewController {
 extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let swCharacterDetailView = SWCharacterDetailView()
-        swCharacterDetailView.person = viewModel.findPerson(at: indexPath.row)
-        let navController = UINavigationController(rootViewController: swCharacterDetailView)
+        let swCharacterDetailViewController = SWCharacterDetailViewController()
+        swCharacterDetailViewController.person = viewModel.findPerson(at: indexPath.row)
+        let navController = UINavigationController(rootViewController: swCharacterDetailViewController)
         navigationController?.present(navController, animated: true, completion: nil)
     }
     
@@ -82,11 +78,12 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as? CharacterCell else { fatalError("Error dequeuing CharacterCell") }
-
-        // check if data is loading
-        if isLoadingCell(for: indexPath) {
-            cell.textLabel?.text = ""
-        } else {
+        /*
+          Load an empty cell if it is waiting for data from API call.
+          This allows the TableView to load in real time behind the blurred loading view
+          and leads to a better user experience for long network calls.
+         */
+        if !isLoadingCell(for: indexPath) {
             cell.person = viewModel.findPerson(at: indexPath.row)
         }
         return cell
@@ -99,6 +96,7 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
         tableView.reloadData()
         
+        
         if viewModel.totalCount == viewModel.currentCount {
             loadingView.removeFromSuperview()
         }
@@ -109,7 +107,10 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
     }
 }
 
+// MARK: - Internal Methods
+
 private extension SWCharactersListViewController {
+    // Checks if index path row exceeds what is currently loaded
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row >= viewModel.currentCount
     }
