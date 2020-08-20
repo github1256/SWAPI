@@ -31,11 +31,13 @@ class SWCharacterDetailView: UIViewController {
     
     var person: Person! {
         didSet {
-            view.backgroundColor = .white
+            characterDetailView.person = self.person
+            
+            
             
             setupTitleView()
-            
-            //navigationItem.title = "\(person.name), born \(person.birthYear)"
+            setupViews()
+            setupNavigationBarButtons()
         }
     }
     
@@ -57,8 +59,6 @@ class SWCharacterDetailView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        setupNavigationBarButtons()
     }
     
     // MARK: - Setup
@@ -74,7 +74,7 @@ class SWCharacterDetailView: UIViewController {
     
     private func setupTitleView() {
         let navTitle = person.name.customizeString(color: .black, fontSize: 18.0, weight: .bold)
-        let navSubtitle = "Date of Birth: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
+        let navSubtitle = "Birth Year: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
         navTitle.append(NSMutableAttributedString(string: "\n"))
         navTitle.append(navSubtitle)
         titleLabel.attributedText = navTitle
@@ -90,28 +90,4 @@ class SWCharacterDetailView: UIViewController {
     @objc func handleDismiss() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-//    // MARK: - TableView Delegate and Datasource
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return HeaderSection.numberOfSections()
-//    }
-//
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return HeaderSection(rawValue: section)?.title
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if section == 4 {
-//            return person.films.count
-//        }
-//
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell()
-//        return cell
-//    }
-    
 }

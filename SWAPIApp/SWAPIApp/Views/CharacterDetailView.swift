@@ -10,7 +10,41 @@ import UIKit
 
 class CharacterDetailView: UIView {
     
+    // MARK: - Variables and Properties
+    
+    private var viewModel: StarWarsViewModel!
+    var films: [Film]!
+    var person: Person! {
+        didSet {
+            viewModel = StarWarsViewModel(delegate: self)
+            person.films.forEach { (filmUrl) in
+                viewModel.fetchFilms(with: filmUrl)
+            }
+            configureLabels()
+        }
+    }
+    
+    fileprivate func configureLabels() {
+        heightLabel.text = person.height
+        massLabel.text = person.mass
+        hairColorLabel.text = person.hairColor
+        skinColorLabel.text = person.skinColor
+        eyeColorLabel.text = person.eyeColor
+        genderLabel.text = person.gender
+    }
+    
     @IBOutlet var containerView: UIView!
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var massLabel: UILabel!
+    @IBOutlet weak var hairColorLabel: UILabel!
+    @IBOutlet weak var skinColorLabel: UILabel!
+    @IBOutlet weak var eyeColorLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var filmsLabel: UILabel! {
+        didSet {
+            filmsLabel.numberOfLines = 0
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,4 +82,23 @@ class CharacterDetailView: UIView {
         print("CharacterDetailView memory being reclaimed...")
     }
 
+}
+
+// MARK: - StarWarsViewModelDelegate
+
+extension CharacterDetailView: StarWarsViewModelDelegate {
+    func fetchDidSucceed() {
+        let films = viewModel.findFilms()
+        
+        // if all film data has been fetched
+        if person.films.count == films.count {
+            var titles: [String] = []
+            films.forEach { titles.append($0.title) }
+            filmsLabel.text = titles.joined(separator: "\n")
+        }
+    }
+    
+    func fetchDidFail(with title: String, description: String) {
+//        AlertService.showAlert(title: title, message: description, on: self)
+    }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Film {
+struct Film: Codable {
     let title: String
     let openingCrawl: String
 }
