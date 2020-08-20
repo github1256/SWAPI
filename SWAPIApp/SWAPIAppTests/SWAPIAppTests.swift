@@ -52,13 +52,13 @@ class SWAPIAppTests: XCTestCase {
 
     func testFetchPeopleSuccessReturnsRootResponse() {
         let apiClient = APIClient()
-        let rootExpectation = expectation(description: "root response")
+        let promise = expectation(description: "completion handler invoked with response")
         var rootResponse: RootResponse?
         apiClient.fetchPeople(page: 1) { result in
             switch result {
             case .success(let response):
                 rootResponse = response
-                rootExpectation.fulfill()
+                promise.fulfill()
             case .failure:
                 break
             }
@@ -70,7 +70,7 @@ class SWAPIAppTests: XCTestCase {
     
     func testFetchPeopleFailureReturnsError() {
         let apiClient = APIClient()
-        let errorExpectation = expectation(description: "error")
+        let promise = expectation(description: "completion handler invoked with error")
         var errorResponse: NetworkError?
         apiClient.fetchPeople(page: 100) { result in
             switch result {
@@ -78,7 +78,7 @@ class SWAPIAppTests: XCTestCase {
                 break
             case .failure(let error):
                 errorResponse = error
-                errorExpectation.fulfill()
+                promise.fulfill()
             }
         }
         waitForExpectations(timeout: 1) { error in
@@ -86,16 +86,16 @@ class SWAPIAppTests: XCTestCase {
         }
     }
     
-    func testFetchFilmSuccessReturnsRootResponse() {
+    func testFetchFilmSuccessReturnsFilm() {
         let apiClient = APIClient()
         guard let url = URL(string: "http://swapi.dev/api/films/4/") else { return }
-        let filmExpectation = expectation(description: "film")
+        let promise = expectation(description: "completion handler invoked with film")
         var filmResponse: Film?
         apiClient.fetchFilm(with: url) { result in
             switch result {
             case .success(let response):
                 filmResponse = response
-                filmExpectation.fulfill()
+                promise.fulfill()
             case .failure:
                 break
             }
@@ -108,7 +108,7 @@ class SWAPIAppTests: XCTestCase {
     func testFetchFilmFailureReturnsError() {
         let apiClient = APIClient()
         guard let url = URL(string: "invalidUrl") else { return }
-        let errorExpectation = expectation(description: "film")
+        let promise = expectation(description: "completion handler invoked with error")
         var errorResponse: NetworkError?
         apiClient.fetchFilm(with: url) { result in
             switch result {
@@ -116,7 +116,7 @@ class SWAPIAppTests: XCTestCase {
                 break
             case .failure(let error):
                 errorResponse = error
-                errorExpectation.fulfill()
+                promise.fulfill()
             }
         }
         waitForExpectations(timeout: 1) { error in
