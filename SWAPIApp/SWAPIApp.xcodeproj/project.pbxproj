@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		9316231724EC56CA00EF409C /* SWCharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316231624EC56CA00EF409C /* SWCharactersListViewController.swift */; };
 		9316231C24EC56CB00EF409C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9316231B24EC56CB00EF409C /* Assets.xcassets */; };
 		9316231F24EC56CB00EF409C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9316231D24EC56CB00EF409C /* LaunchScreen.storyboard */; };
-		9316232924EC593200EF409C /* TinyNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 9316232824EC593200EF409C /* TinyNetworking */; };
 		9316232D24EC5B3100EF409C /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232C24EC5B3100EF409C /* UIView + Layout.swift */; };
 		9316233024EC5CD000EF409C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232F24EC5CD000EF409C /* APIClient.swift */; };
 		9316233324EC5D2600EF409C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316233224EC5D2600EF409C /* Person.swift */; };
@@ -62,7 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9316232924EC593200EF409C /* TinyNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +201,6 @@
 			);
 			name = SWAPIApp;
 			packageProductDependencies = (
-				9316232824EC593200EF409C /* TinyNetworking */,
 			);
 			productName = SWAPIApp;
 			productReference = 9316230F24EC56CA00EF409C /* SWAPIApp.app */;
@@ -234,7 +231,6 @@
 			);
 			mainGroup = 9316230624EC56C900EF409C;
 			packageReferences = (
-				9316232724EC593200EF409C /* XCRemoteSwiftPackageReference "tiny-networking" */,
 			);
 			productRefGroup = 9316231024EC56CA00EF409C /* Products */;
 			projectDirPath = "";
@@ -470,25 +466,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		9316232724EC593200EF409C /* XCRemoteSwiftPackageReference "tiny-networking" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/objcio/tiny-networking.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9316232824EC593200EF409C /* TinyNetworking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9316232724EC593200EF409C /* XCRemoteSwiftPackageReference "tiny-networking" */;
-			productName = TinyNetworking;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9316230724EC56C900EF409C /* Project object */;
 }
