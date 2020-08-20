@@ -37,12 +37,6 @@ class SWCharactersListViewController: UIViewController {
         return view
     }()
     
-//    let activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView()
-//        indicator.startAnimating()
-//        return indicator
-//    }()
-    
     let tableView: UITableView = {
         let table = UITableView()
         return table
@@ -67,6 +61,7 @@ class SWCharactersListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        tableView.register(CharacterCell.self, forCellReuseIdentifier: CharacterCell.reuseIdentifier)
     }
     
 }
@@ -78,12 +73,9 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let swCharacterDetailView = SWCharacterDetailView()
         swCharacterDetailView.person = viewModel.findPerson(at: indexPath.row)
-        
         let navController = UINavigationController(rootViewController: swCharacterDetailView)
-        
         navigationController?.present(navController, animated: true, completion: nil)
-        
-        //navigationController?.pushViewController(swCharacterDetailView, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,12 +83,19 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as? CharacterCell else { fatalError("Error dequeuing CharacterCell") }
+        
+
+//        cell.podcast = self.podcasts[indexPath.row]
+//        return cell
+        
         
         if isLoadingCell(for: indexPath) {
-            cell.textLabel?.text = "loading..."
+            cell.textLabel?.text = ""
         } else {
-            cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
+            cell.person = viewModel.findPerson(at: indexPath.row)
+            
+            //cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
         }
         return cell
     }
@@ -106,7 +105,6 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
-//        loadingView.removeFromSuperview()
         tableView.reloadData()
         
         if viewModel.totalCount == viewModel.currentCount {
@@ -118,8 +116,6 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
         AlertService.showAlert(title: title, message: description, on: self)
     }
 }
-
-
 
 private extension SWCharactersListViewController {
     func isLoadingCell(for indexPath: IndexPath) -> Bool {

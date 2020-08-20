@@ -118,6 +118,7 @@ extension CharacterDetailView: StarWarsViewModelDelegate {
     }
     
     func fetchDidFail(with title: String, description: String) {
-        //        AlertService.showAlert(title: title, message: description, on: self)
+        #warning("T##message##")
+        //AlertService.showAlert(title: title, message: description, on: self)
     }
 }

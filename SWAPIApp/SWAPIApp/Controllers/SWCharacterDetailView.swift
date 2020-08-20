@@ -27,7 +27,7 @@ class SWCharacterDetailView: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         view.frame = self.view.bounds
         view.contentSize = contentViewSize
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -67,7 +67,7 @@ class SWCharacterDetailView: UIViewController {
     }
     
     private func setupTitleView() {
-        let navTitle = person.name.customizeString(color: .black, fontSize: 18.0, weight: .bold)
+        let navTitle = person.name.customizeString(color: UIColor.label, fontSize: 20.0, weight: .bold)
         let navSubtitle = "Birth Year: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
         navTitle.append(NSMutableAttributedString(string: "\n"))
         navTitle.append(navSubtitle)
