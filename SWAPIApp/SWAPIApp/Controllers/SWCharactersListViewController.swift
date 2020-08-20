@@ -12,14 +12,14 @@ class SWCharactersListViewController: UIViewController {
     
     // MARK: - Variables and Properties
     
-    private var viewModel: StarWarsViewModel!
+    private var viewModel: StarWarsViewModel?
     
     // MARK: - Lifecycles
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = StarWarsViewModel(delegate: self)
-        viewModel.fetchPeople()
+        viewModel?.fetchPeople()
         
         setupViews()
         setupTableView()
@@ -66,16 +66,13 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let swCharacterDetailViewController = SWCharacterDetailViewController()
-        swCharacterDetailViewController.person = viewModel.findPerson(at: indexPath.row)
+        swCharacterDetailViewController.person = viewModel?.findPerson(at: indexPath.row)
         let navController = UINavigationController(rootViewController: swCharacterDetailViewController)
         navigationController?.present(navController, animated: true, completion: nil)
-//        navigationController?.pushViewController(swCharacterDetailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel != nil {
-            return viewModel.totalCount
-        } else { return 0 }
+        return viewModel?.totalCount ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,7 +83,7 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
           and leads to a better user experience for long network calls.
          */
         if !isLoadingCell(for: indexPath) {
-            cell.person = viewModel.findPerson(at: indexPath.row)
+            cell.person = viewModel?.findPerson(at: indexPath.row)
         }
         return cell
     }
@@ -100,7 +97,7 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
         tableView.reloadData()
         
         // Remove the loading view when all characters have been fetched
-        if viewModel.totalCount == viewModel.currentCount {
+        if viewModel?.totalCount == viewModel?.currentCount {
             loadingView.removeFromSuperview()
         }
     }
@@ -115,6 +112,6 @@ extension SWCharactersListViewController: StarWarsViewModelDelegate {
 private extension SWCharactersListViewController {
     // Checks if index path row exceeds what is currently loaded
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= viewModel.currentCount
+        return indexPath.row >= viewModel?.currentCount ?? 0
     }
 }
