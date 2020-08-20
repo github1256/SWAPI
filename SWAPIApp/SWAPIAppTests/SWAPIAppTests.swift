@@ -10,6 +10,13 @@ import XCTest
 @testable import SWAPIApp
 
 class SWAPIAppTests: XCTestCase {
+    // System Under Test
+    var sut: URLSession!
+    
+    override class func setUp() {
+        super.setUp()
+    }
+    
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,21 +26,9 @@ class SWAPIAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    // MARK: - Word Count Extension
     
-    func testWordCountExtensionReturnsCorrectCount() {
-        let sampleOpeningCrawlText = "Luke Skywalker has returned to\r\nhis home planet of Tatooine in\r\nan attempt to rescue his\r\nfriend Han Solo from the\r\nclutches of the vile gangster\r\nJabba the Hutt.\r\n\r\nLittle does Luke know that the\r\nGALACTIC EMPIRE has secretly\r\nbegun construction on a new\r\narmored space station even\r\nmore powerful than the first\r\ndreaded Death Star.\r\n\r\nWhen completed, this ultimate\r\nweapon will spell certain doom\r\nfor the small band of rebels\r\nstruggling to restore freedom\r\nto the galaxy..."
-        let wordCount = sampleOpeningCrawlText.wordCount
-        XCTAssertEqual(wordCount, 78)
-    }
     
-    func testWordCountExtensionReturnsCorrectCountForSampleText() {
-        let sampleText = "Can Montreal open the trilogy? 452 withdraws! A scratching taxi leaps against a counsel. An entertaining campaign faints. The fatuous handful allies 452 across the catholic."
-        let wordCount = sampleText.wordCount
-        XCTAssertEqual(wordCount, 26)
-    }
-    
-    // MARK: - API Tests
+    // MARK: - Asynchronous Tests: API
 
     func testFetchPeopleSuccessReturnsRootResponse() {
         let apiClient = APIClient()
@@ -108,4 +103,32 @@ class SWAPIAppTests: XCTestCase {
             XCTAssertNotNil(errorResponse)
         }
     }
+    
+    
+    
+    
+    // MARK: - Word Count Extension
+    
+    func testWordCountExtensionReturnsCorrectCount() {
+        let wordCount = SampleText.sampleOpeningCrawl.wordCount
+        XCTAssertEqual(wordCount, 78)
+    }
+    
+    func testWordCountExtensionReturnsCorrectCountForSampleText() {
+        let wordCount = SampleText.sampleTextWithContractions.wordCount
+        XCTAssertEqual(wordCount, 31)
+    }
+}
+
+
+
+
+
+
+
+
+
+struct SampleText {
+    static var sampleOpeningCrawl = "Luke Skywalker has returned to\r\nhis home planet of Tatooine in\r\nan attempt to rescue his\r\nfriend Han Solo from the\r\nclutches of the vile gangster\r\nJabba the Hutt.\r\n\r\nLittle does Luke know that the\r\nGALACTIC EMPIRE has secretly\r\nbegun construction on a new\r\narmored space station even\r\nmore powerful than the first\r\ndreaded Death Star.\r\n\r\nWhen completed, this ultimate\r\nweapon will spell certain doom\r\nfor the small band of rebels\r\nstruggling to restore freedom\r\nto the galaxy..."
+    static var sampleTextWithContractions = "This will be a random string with random contractions so that we can test whether it'll be able to parse word counts correctly. It'll be interesting to see, don't you think?"
 }
