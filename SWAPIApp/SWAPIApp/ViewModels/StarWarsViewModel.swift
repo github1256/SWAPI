@@ -54,6 +54,9 @@ final class StarWarsViewModel {
     
     // MARK: - Fetch Data
     
+    let dispatchGroup = DispatchGroup()
+    
+    
     func fetchPeople() {
         apiClient.fetchPeople(page: currentPage) { result in
             switch result {
