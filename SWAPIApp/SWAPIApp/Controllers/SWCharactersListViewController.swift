@@ -73,7 +73,9 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.totalCount
+        if viewModel != nil {
+            return viewModel.totalCount
+        } else { return 0 }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,9 +96,10 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
 
 extension SWCharactersListViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
+        // Reload table view with fetched characters
         tableView.reloadData()
         
-        
+        // Remove the loading view when all characters have been fetched
         if viewModel.totalCount == viewModel.currentCount {
             loadingView.removeFromSuperview()
         }

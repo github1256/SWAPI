@@ -13,6 +13,7 @@ protocol StarWarsViewModelDelegate: class {
     func fetchDidFail(with title: String, description: String)
 }
 
+// Final Declaration to prevent inheritance from other classes
 final class StarWarsViewModel {
     private weak var delegate: StarWarsViewModelDelegate?
     
@@ -27,11 +28,13 @@ final class StarWarsViewModel {
     private var films: [Film] = []
     private var starWarsPeople: [Person] = [] {
         didSet {
-            // fetch next page of results until entire list if fetched
+            // Keep track of fetched characters and compare with total on server
+            // Fetch next page of results until all characters are fetched
             if currentCount < totalCount {
                 fetchPeople()
             } else {
-                // sort alphabetically
+                // When all characters are fetched, sort alphabetically,
+                // and reload table view with data
                 self.starWarsPeople.sort { $0.name < $1.name }
                 self.delegate?.fetchDidSucceed()
             }
@@ -40,9 +43,8 @@ final class StarWarsViewModel {
     
     private var currentPage = 1
     private var total = 0
-    
-    var totalCount: Int { return total }
     var currentCount: Int { return starWarsPeople.count }
+    var totalCount: Int { return total }
     
     // MARK: - Internal Methods
     
@@ -50,32 +52,30 @@ final class StarWarsViewModel {
         return starWarsPeople[index]
     }
     
-    func findFilms() -> [Film] { return films }
+    func findFilms() -> [Film] {
+        return films
+    }
     
     // MARK: - Fetch Data
-    
-    let dispatchGroup = DispatchGroup()
-    
-    
+
     func fetchPeople() {
         apiClient.fetchPeople(page: currentPage) { result in
             switch result {
             case .failure(let error):
-                // perform on main thread to update UI
+                // Perform on main thread to update UI
                 DispatchQueue.main.async {
                     self.delegate?.fetchDidFail(with: error.reason, description: error.localizedDescription)
                 }
             case .success(let response):
-                // perform on main thread to update UI
+                // Perform on main thread to update UI
                 DispatchQueue.main.async {
-                    
-                    // increment the page number to fetch next page of results
-                    self.currentPage += 1
-                    
-                    // store total # of characters on the server
+                    // Store total number of characters available on the server
                     self.total = response.count
                     
-                    // store latest fetched characters
+                    // Increment the page number to fetch the next page of results
+                    self.currentPage += 1
+                    
+                    // Store the latest fetched characters
                     self.starWarsPeople.append(contentsOf: response.results)
                     
                     self.delegate?.fetchDidSucceed()
@@ -88,14 +88,13 @@ final class StarWarsViewModel {
         apiClient.fetchFilm(with: url) { result in
             switch result {
             case .failure(let error):
-                // perform on main thread to update UI
+                // Perform on main thread to update UI
                 DispatchQueue.main.async {
                     self.delegate?.fetchDidFail(with: error.reason, description: error.localizedDescription)
                 }
             case .success(let film):
-                // perform on main thread to update UI
+                // Perform on main thread to update UI
                 DispatchQueue.main.async {
-                    // store fetched film
                     self.films.append(film)
                     self.delegate?.fetchDidSucceed()
                 }

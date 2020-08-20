@@ -16,7 +16,7 @@ class CharacterDetailView: UIView {
     var films: [Film] = []
     var person: Person! {
         didSet {
-            //setupActivityIndicator()
+            setupActivityIndicator()
             configureLabels()
         }
     }
@@ -48,7 +48,7 @@ class CharacterDetailView: UIView {
     
     private func setupActivityIndicator() {
         filmsLabel.addSubview(activityIndicator)
-        activityIndicator.anchor(top: filmsLabel.topAnchor, leading: filmsLabel.leadingAnchor, bottom: filmsLabel.bottomAnchor, trailing: filmsLabel.trailingAnchor)
+        activityIndicator.center(in: filmsLabel)
     }
     
     // MARK: - Subviews

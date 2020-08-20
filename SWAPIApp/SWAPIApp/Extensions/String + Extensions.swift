@@ -9,16 +9,20 @@
 import UIKit
 
 extension String {
+    
+    // Splits the string by words and returns the word count
     var wordCount: Int {
-        var words: [Substring] = []
+        var words: [String] = []
         self.enumerateSubstrings(in: self.startIndex...,
                                  options: .byWords) {
                                     (string, range, _, _) in
-                                    words.append(self[range])
+                                    if let string = string {
+                                        words.append(string)
+                                    }
         }
         return words.count
     }
-    
+
     func customizeString(color: UIColor, fontSize: CGFloat, weight: UIFont.Weight) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: self, attributes:
             [

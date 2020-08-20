@@ -16,7 +16,7 @@ enum NetworkError: Error {
     var reason: String {
         switch self {
         case .invalidUrl:
-            return "Failed to fetch data from an invalid URL"
+            return "Network Failure: Invalid URL"
         case .requestFailed:
             return "Network Failure: Failed to fetch data"
         case .decodingFailed:

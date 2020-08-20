@@ -13,28 +13,31 @@ final class APIClient {
     
     func fetchFilm(with url: URL, completion: @escaping (Result<Film, NetworkError>) -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            // Check if HTTP response is successful and data is safe
-            // Otherwise return with a failure
-            guard let httpResponse = response as? HTTPURLResponse,
-                (200...299).contains(httpResponse.statusCode),
-                let safeData = data
-                else {
-                    completion(.failure(.requestFailed))
-                    return
-            }
-            
-            // If response is valid, decode JSON
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let film = try decoder.decode(Film.self, from: safeData)
-                completion(Result.success(film))
-            } catch {
-                completion(Result.failure(.decodingFailed))
+            // Back to main thread
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                // Check if HTTP response is successful and data is safe
+                // Otherwise return with a failure
+                guard let httpResponse = response as? HTTPURLResponse,
+                    (200...299).contains(httpResponse.statusCode),
+                    let safeData = data
+                    else {
+                        completion(.failure(.requestFailed))
+                        return
+                }
+                
+                // If response is valid, decode JSON
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let film = try decoder.decode(Film.self, from: safeData)
+                    completion(Result.success(film))
+                } catch {
+                    completion(Result.failure(.decodingFailed))
+                }
             }
         }.resume()
     }
@@ -53,8 +56,6 @@ final class APIClient {
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            print("Fetching list of Star Wars characters from:", url)
-            
             // Back to main thread
             DispatchQueue.main.async {
                 if let error = error {

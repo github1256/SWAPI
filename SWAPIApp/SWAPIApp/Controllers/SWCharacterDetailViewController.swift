@@ -37,14 +37,15 @@ class SWCharacterDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.frame = self.view.bounds
         view.contentSize = contentViewSize
-        //view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.showsHorizontalScrollIndicator = false
         return view
     }()
     
     lazy var characterDetailView: CharacterDetailView = {
         let view = CharacterDetailView()
         view.frame.size = contentViewSize
-        //view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return view
     }()
     

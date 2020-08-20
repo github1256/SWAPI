@@ -15,6 +15,10 @@ enum AssetsColor: String {
 extension UIColor {
     
     // MARK: - Flyweight Design Pattern
+    // Returns cached objects if they exist, otherwise
+    // creates a new instance.
+    // Perhaps a bit of an overkill for this project,
+    // but will be useful for additional custom colors.
     
     public static var colorStore: [String: UIColor] = [:]
     
