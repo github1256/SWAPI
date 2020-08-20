@@ -9,26 +9,51 @@
 import XCTest
 @testable import SWAPIApp
 
-class SWAPIAppTests: XCTestCase {
+class SWAPIAppSlowTests: XCTestCase {
     // System Under Test
     var sut: URLSession!
     
-    override class func setUp() {
-        super.setUp()
+    override func setUp() {
+      super.setUp()
+      sut = URLSession(configuration: .default)
     }
+    
+    override func tearDown() {
+      sut = nil
+      super.tearDown()
+    }
+    
+    // MARK: - Asynchronous Tests: API Call
+
+    func testValidCallToSWAPIReturnsCompletion() {
+        let url = URL(string: "http://swapi.dev/api/people/?page=3")
+        // What we expect to happen
+        let promise = expectation(description: "Returns Completion handler")
+        var statusCode: Int?
+        var responseError: Error?
+        let dataTask = sut.dataTask(with: url!) { (data, response, error) in
+            let httpResponse = response as? HTTPURLResponse
+            statusCode = httpResponse?.statusCode
+            responseError = error
+            // When app receives a response, expectation is fulfilled
+            promise.fulfill()
+        }
+        dataTask.resume()
+        wait(for: [promise], timeout: 5)
+        XCTAssertNil(responseError)
+        XCTAssertEqual(statusCode, 200)
+    }
+    
+    
     
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     
     
     
-    // MARK: - Asynchronous Tests: API
+    
+
+    
 
     func testFetchPeopleSuccessReturnsRootResponse() {
         let apiClient = APIClient()
@@ -103,32 +128,4 @@ class SWAPIAppTests: XCTestCase {
             XCTAssertNotNil(errorResponse)
         }
     }
-    
-    
-    
-    
-    // MARK: - Word Count Extension
-    
-    func testWordCountExtensionReturnsCorrectCount() {
-        let wordCount = SampleText.sampleOpeningCrawl.wordCount
-        XCTAssertEqual(wordCount, 78)
-    }
-    
-    func testWordCountExtensionReturnsCorrectCountForSampleText() {
-        let wordCount = SampleText.sampleTextWithContractions.wordCount
-        XCTAssertEqual(wordCount, 31)
-    }
-}
-
-
-
-
-
-
-
-
-
-struct SampleText {
-    static var sampleOpeningCrawl = "Luke Skywalker has returned to\r\nhis home planet of Tatooine in\r\nan attempt to rescue his\r\nfriend Han Solo from the\r\nclutches of the vile gangster\r\nJabba the Hutt.\r\n\r\nLittle does Luke know that the\r\nGALACTIC EMPIRE has secretly\r\nbegun construction on a new\r\narmored space station even\r\nmore powerful than the first\r\ndreaded Death Star.\r\n\r\nWhen completed, this ultimate\r\nweapon will spell certain doom\r\nfor the small band of rebels\r\nstruggling to restore freedom\r\nto the galaxy..."
-    static var sampleTextWithContractions = "This will be a random string with random contractions so that we can test whether it'll be able to parse word counts correctly. It'll be interesting to see, don't you think?"
 }

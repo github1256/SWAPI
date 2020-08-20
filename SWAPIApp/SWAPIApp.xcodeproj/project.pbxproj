@@ -15,6 +15,7 @@
 		9316232D24EC5B3100EF409C /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232C24EC5B3100EF409C /* UIView + Layout.swift */; };
 		9316233024EC5CD000EF409C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316232F24EC5CD000EF409C /* APIClient.swift */; };
 		9316233324EC5D2600EF409C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316233224EC5D2600EF409C /* Person.swift */; };
+		931ABFA424EF3D7E000148B2 /* SWAPIAppFastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFA324EF3D7E000148B2 /* SWAPIAppFastTests.swift */; };
 		93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6924ED597A00BC88CD /* NetworkError.swift */; };
 		93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */; };
 		93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7024ED64CF00BC88CD /* RootResponse.swift */; };
@@ -28,10 +29,17 @@
 		93926B8B24EDEC4300BC88CD /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B8A24EDEC4300BC88CD /* String + Extensions.swift */; };
 		93C3BC9824EE457F0088C9A1 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BC9724EE457F0088C9A1 /* CharacterCell.swift */; };
 		93C3BC9A24EE54000088C9A1 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BC9924EE54000088C9A1 /* UIColor + Extensions.swift */; };
-		93C3BCA224EEEB880088C9A1 /* SWAPIAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BCA124EEEB880088C9A1 /* SWAPIAppTests.swift */; };
+		93C3BCA224EEEB880088C9A1 /* SWAPIAppSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C3BCA124EEEB880088C9A1 /* SWAPIAppSlowTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		931ABFA624EF3D7E000148B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9316230724EC56C900EF409C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9316230E24EC56C900EF409C;
+			remoteInfo = SWAPIApp;
+		};
 		93C3BCA424EEEB880088C9A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9316230724EC56C900EF409C /* Project object */;
@@ -52,6 +60,9 @@
 		9316232C24EC5B3100EF409C /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 		9316232F24EC5CD000EF409C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9316233224EC5D2600EF409C /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		931ABFA124EF3D7D000148B2 /* SWAPIAppFastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAPIAppFastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		931ABFA324EF3D7E000148B2 /* SWAPIAppFastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIAppFastTests.swift; sourceTree = "<group>"; };
+		931ABFA524EF3D7E000148B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93926B6924ED597A00BC88CD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsViewModel.swift; sourceTree = "<group>"; };
 		93926B7024ED64CF00BC88CD /* RootResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootResponse.swift; sourceTree = "<group>"; };
@@ -66,12 +77,19 @@
 		93C3BC9724EE457F0088C9A1 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		93C3BC9924EE54000088C9A1 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
 		93C3BC9F24EEEB880088C9A1 /* SWAPIAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWAPIAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		93C3BCA124EEEB880088C9A1 /* SWAPIAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIAppTests.swift; sourceTree = "<group>"; };
+		93C3BCA124EEEB880088C9A1 /* SWAPIAppSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWAPIAppSlowTests.swift; sourceTree = "<group>"; };
 		93C3BCA324EEEB880088C9A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9316230C24EC56C900EF409C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931ABF9E24EF3D7D000148B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -94,6 +112,7 @@
 				93926B7524ED756600BC88CD /* Default-568h@2x.png */,
 				9316231124EC56CA00EF409C /* SWAPIApp */,
 				93C3BCA024EEEB880088C9A1 /* SWAPIAppTests */,
+				931ABFA224EF3D7E000148B2 /* SWAPIAppFastTests */,
 				9316231024EC56CA00EF409C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +122,7 @@
 			children = (
 				9316230F24EC56CA00EF409C /* SWAPIApp.app */,
 				93C3BC9F24EEEB880088C9A1 /* SWAPIAppTests.xctest */,
+				931ABFA124EF3D7D000148B2 /* SWAPIAppFastTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +183,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		931ABFA224EF3D7E000148B2 /* SWAPIAppFastTests */ = {
+			isa = PBXGroup;
+			children = (
+				931ABFA324EF3D7E000148B2 /* SWAPIAppFastTests.swift */,
+				931ABFA524EF3D7E000148B2 /* Info.plist */,
+			);
+			path = SWAPIAppFastTests;
+			sourceTree = "<group>";
+		};
 		93926B6724ED587100BC88CD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +239,7 @@
 		93C3BCA024EEEB880088C9A1 /* SWAPIAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				93C3BCA124EEEB880088C9A1 /* SWAPIAppTests.swift */,
+				93C3BCA124EEEB880088C9A1 /* SWAPIAppSlowTests.swift */,
 				93C3BCA324EEEB880088C9A1 /* Info.plist */,
 			);
 			path = SWAPIAppTests;
@@ -237,6 +266,24 @@
 			productName = SWAPIApp;
 			productReference = 9316230F24EC56CA00EF409C /* SWAPIApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		931ABFA024EF3D7D000148B2 /* SWAPIAppFastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 931ABFAA24EF3D7E000148B2 /* Build configuration list for PBXNativeTarget "SWAPIAppFastTests" */;
+			buildPhases = (
+				931ABF9D24EF3D7D000148B2 /* Sources */,
+				931ABF9E24EF3D7D000148B2 /* Frameworks */,
+				931ABF9F24EF3D7D000148B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				931ABFA724EF3D7E000148B2 /* PBXTargetDependency */,
+			);
+			name = SWAPIAppFastTests;
+			productName = SWAPIAppFastTests;
+			productReference = 931ABFA124EF3D7D000148B2 /* SWAPIAppFastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		93C3BC9E24EEEB880088C9A1 /* SWAPIAppTests */ = {
 			isa = PBXNativeTarget;
@@ -269,6 +316,10 @@
 					9316230E24EC56C900EF409C = {
 						CreatedOnToolsVersion = 11.6;
 					};
+					931ABFA024EF3D7D000148B2 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 9316230E24EC56C900EF409C;
+					};
 					93C3BC9E24EEEB880088C9A1 = {
 						CreatedOnToolsVersion = 11.6;
 						TestTargetID = 9316230E24EC56C900EF409C;
@@ -292,6 +343,7 @@
 			targets = (
 				9316230E24EC56C900EF409C /* SWAPIApp */,
 				93C3BC9E24EEEB880088C9A1 /* SWAPIAppTests */,
+				931ABFA024EF3D7D000148B2 /* SWAPIAppFastTests */,
 			);
 		};
 /* End PBXProject section */
@@ -305,6 +357,13 @@
 				93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */,
 				9316231C24EC56CB00EF409C /* Assets.xcassets in Resources */,
 				93926B8724EDD11C00BC88CD /* CharacterDetailView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931ABF9F24EF3D7D000148B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,17 +401,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		931ABF9D24EF3D7D000148B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931ABFA424EF3D7E000148B2 /* SWAPIAppFastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93C3BC9B24EEEB880088C9A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93C3BCA224EEEB880088C9A1 /* SWAPIAppTests.swift in Sources */,
+				93C3BCA224EEEB880088C9A1 /* SWAPIAppSlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		931ABFA724EF3D7E000148B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9316230E24EC56C900EF409C /* SWAPIApp */;
+			targetProxy = 931ABFA624EF3D7E000148B2 /* PBXContainerItemProxy */;
+		};
 		93C3BCA524EEEB880088C9A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9316230E24EC56C900EF409C /* SWAPIApp */;
@@ -522,6 +594,46 @@
 			};
 			name = Release;
 		};
+		931ABFA824EF3D7E000148B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5L5S7CN8F;
+				INFOPLIST_FILE = SWAPIAppFastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prsclla.SWAPIAppFastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWAPIApp.app/SWAPIApp";
+			};
+			name = Debug;
+		};
+		931ABFA924EF3D7E000148B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A5L5S7CN8F;
+				INFOPLIST_FILE = SWAPIAppFastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prsclla.SWAPIAppFastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWAPIApp.app/SWAPIApp";
+			};
+			name = Release;
+		};
 		93C3BCA724EEEB880088C9A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -579,6 +691,15 @@
 			buildConfigurations = (
 				9316232424EC56CB00EF409C /* Debug */,
 				9316232524EC56CB00EF409C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		931ABFAA24EF3D7E000148B2 /* Build configuration list for PBXNativeTarget "SWAPIAppFastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				931ABFA824EF3D7E000148B2 /* Debug */,
+				931ABFA924EF3D7E000148B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
