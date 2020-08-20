@@ -63,7 +63,6 @@ class SWCharactersListViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.register(CharacterCell.self, forCellReuseIdentifier: CharacterCell.reuseIdentifier)
     }
-    
 }
 
 // MARK: - TableView Delegate and Datasource
@@ -75,27 +74,20 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
         swCharacterDetailView.person = viewModel.findPerson(at: indexPath.row)
         let navController = UINavigationController(rootViewController: swCharacterDetailView)
         navigationController?.present(navController, animated: true, completion: nil)
-        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.totalCount
+        viewModel.totalCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.reuseIdentifier, for: indexPath) as? CharacterCell else { fatalError("Error dequeuing CharacterCell") }
-        
 
-//        cell.podcast = self.podcasts[indexPath.row]
-//        return cell
-        
-        
+        // check if data is loading
         if isLoadingCell(for: indexPath) {
             cell.textLabel?.text = ""
         } else {
             cell.person = viewModel.findPerson(at: indexPath.row)
-            
-            //cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
         }
         return cell
     }

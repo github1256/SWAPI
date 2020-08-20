@@ -92,7 +92,7 @@ final class StarWarsViewModel {
             case .success(let film):
                 // perform on main thread to update UI
                 DispatchQueue.main.async {
-                    // store latest fetched characters
+                    // store fetched film
                     self.films.append(film)
                     self.delegate?.fetchDidSucceed()
                 }

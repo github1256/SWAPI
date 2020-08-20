@@ -12,8 +12,18 @@ class SWCharacterDetailView: UIViewController {
     
     // MARK: - Variables and Properties
     
+    private var viewModel: StarWarsViewModel!
+    var films: [Film] = []
     var person: Person! {
         didSet {
+            
+            viewModel = StarWarsViewModel(delegate: self)
+            person.films.forEach { (filmUrl) in
+                viewModel.fetchFilms(with: filmUrl)
+            }
+            
+            
+            
             characterDetailView.person = self.person
             setupTitleView()
             setupViews()
@@ -59,13 +69,8 @@ class SWCharacterDetailView: UIViewController {
     private func setupViews() {
         [scrollView].forEach { view.addSubview($0) }
         scrollView.addSubview(characterDetailView)
-        //setupLayouts()
     }
-    
-    private func setupLayouts() {
-        //
-    }
-    
+
     private func setupTitleView() {
         let navTitle = person.name.customizeString(color: UIColor.label, fontSize: 20.0, weight: .bold)
         let navSubtitle = "Birth Year: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
@@ -83,5 +88,40 @@ class SWCharacterDetailView: UIViewController {
     
     @objc func handleDismiss() {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - StarWarsViewModelDelegate
+
+typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
+
+extension SWCharacterDetailView: StarWarsViewModelDelegate {
+    func fetchDidSucceed() {
+        let films = viewModel.findFilms()
+        
+        // check if all film data has been fetched
+        if person.films.count == films.count {
+            var filmTuples: [FilmTuple] = []
+            films.forEach { film in
+                
+                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
+            }
+            
+            
+//            filmsLabel.text = filmTuples.map {
+//                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
+//            }.joined(separator: "\n")
+            
+            
+            
+            
+            
+            
+            
+        }
+    }
+    
+    func fetchDidFail(with title: String, description: String) {
+        AlertService.showAlert(title: title, message: description, on: self)
     }
 }

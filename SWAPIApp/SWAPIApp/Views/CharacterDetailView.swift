@@ -16,10 +16,10 @@ class CharacterDetailView: UIView {
     var films: [Film] = []
     var person: Person! {
         didSet {
-            viewModel = StarWarsViewModel(delegate: self)
-            person.films.forEach { (filmUrl) in
-                viewModel.fetchFilms(with: filmUrl)
-            }
+//            viewModel = StarWarsViewModel(delegate: self)
+//            person.films.forEach { (filmUrl) in
+//                viewModel.fetchFilms(with: filmUrl)
+//            }
             configureLabels()
         }
     }
@@ -75,8 +75,6 @@ class CharacterDetailView: UIView {
         ])
     }
     
-    // MARK: - Lifecycles
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -87,38 +85,38 @@ class CharacterDetailView: UIView {
     
 }
 
-// MARK: - StarWarsViewModelDelegate
-
-typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
-
-extension CharacterDetailView: StarWarsViewModelDelegate {
-    func fetchDidSucceed() {
-        let films = viewModel.findFilms()
-        
-        // check if all film data has been fetched
-        if person.films.count == films.count {
-            var filmTuples: [FilmTuple] = []
-            films.forEach { film in
-                
-                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
-            }
-            
-            
-            filmsLabel.text = filmTuples.map {
-                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
-            }.joined(separator: "\n")
-            
-            
-            
-            
-            
-            
-            
-        }
-    }
-    
-    func fetchDidFail(with title: String, description: String) {
-        #warning("T##message##")
-        //AlertService.showAlert(title: title, message: description, on: self)
-    }
-}
+//// MARK: - StarWarsViewModelDelegate
+//
+//typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
+//
+//extension CharacterDetailView: StarWarsViewModelDelegate {
+//    func fetchDidSucceed() {
+//        let films = viewModel.findFilms()
+//        
+//        // check if all film data has been fetched
+//        if person.films.count == films.count {
+//            var filmTuples: [FilmTuple] = []
+//            films.forEach { film in
+//                
+//                filmTuples.append(FilmTuple(title: film.title, openingCrawlWordCount: film.openingCrawl.wordCount))
+//            }
+//            
+//            
+//            filmsLabel.text = filmTuples.map {
+//                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
+//            }.joined(separator: "\n")
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//        }
+//    }
+//    
+//    func fetchDidFail(with title: String, description: String) {
+//        #warning("T##message##")
+//        //AlertService.showAlert(title: title, message: description, on: self)
+//    }
+//}
