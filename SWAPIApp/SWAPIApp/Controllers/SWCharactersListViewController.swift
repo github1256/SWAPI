@@ -14,7 +14,6 @@ class SWCharactersListViewController: UIViewController {
     // MARK: - Variables and Properties
     
     private var viewModel: StarWarsViewModel!
-    private var heightForRow: CGFloat = 50
     
     // MARK: - Lifecycles
     
@@ -100,10 +99,6 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
             cell.textLabel?.text = viewModel.findPerson(at: indexPath.row).name
         }
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return heightForRow
     }
 }
 

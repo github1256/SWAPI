@@ -32,19 +32,27 @@ class SWCharacterDetailView: UIViewController {
     var person: Person! {
         didSet {
             characterDetailView.person = self.person
-            
-            
-            
             setupTitleView()
             setupViews()
             setupNavigationBarButtons()
         }
     }
     
+    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
+    
     // MARK: - Subviews
     
-    let characterDetailView: CharacterDetailView = {
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.backgroundColor = .white
+        view.frame = self.view.bounds
+        view.contentSize = contentViewSize
+        return view
+    }()
+    
+    lazy var characterDetailView: CharacterDetailView = {
         let view = CharacterDetailView()
+        view.frame.size = contentViewSize
         return view
     }()
     
@@ -64,12 +72,13 @@ class SWCharacterDetailView: UIViewController {
     // MARK: - Setup
     
     private func setupViews() {
-        [characterDetailView].forEach { view.addSubview($0) }
+        [scrollView].forEach { view.addSubview($0) }
+        scrollView.addSubview(characterDetailView)
         setupLayouts()
     }
     
     private func setupLayouts() {
-        characterDetailView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+//        characterDetailView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     private func setupTitleView() {
