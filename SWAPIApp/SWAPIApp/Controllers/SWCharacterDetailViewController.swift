@@ -25,7 +25,7 @@ class SWCharacterDetailViewController: UIViewController {
             setupTableView()
         }
     }
-    var filmString: String?
+    var filmString: String = ""
     
     // MARK: - Subviews
     
@@ -93,7 +93,6 @@ extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
         filmString = films?.map {
             "\($0.title) " + "(opening crawl: \($0.openingCrawl.wordCount))"
         }.joined(separator: "\n\n") ?? ""
-
         tableView.reloadData()
     }
     
@@ -136,7 +135,7 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
         case .eyeColor: cell.configureCell(with: person.eyeColor)
         case .gender: cell.configureCell(with: person.gender)
         case .films:
-            cell.configureCell(with: filmString ?? "")
+            cell.configureCell(with: filmString)
             cell.loadingIndicator.isHidden = false
             cell.loadingIndicator.startAnimating()
             
