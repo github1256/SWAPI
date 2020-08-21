@@ -39,7 +39,7 @@ final class APIClient {
         }
         
         let dataTask = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
+            if error != nil {
                 DispatchQueue.main.async {
                     completion(.failure(.request))
                 }
@@ -63,7 +63,7 @@ final class APIClient {
                     DispatchQueue.main.async {
                         completion(.success(decodedData))
                     }
-                } catch let jsonError {
+                } catch {
                     DispatchQueue.main.async {
                         completion(.failure(.decoding))
                     }

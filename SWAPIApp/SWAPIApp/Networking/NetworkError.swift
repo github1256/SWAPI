@@ -10,9 +10,9 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidUrl
-    case request//(Error)
-    case decoding//(Error)
-    case network//(Int)
+    case request
+    case decoding
+    case network
     case unknown
 
     var reason: String {

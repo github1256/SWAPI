@@ -10,7 +10,7 @@ import Foundation
 
 /*
  Create custom subclass of URLProtocol to handle network requests
- Inspired by this Hacking With Swift post:
+ Resources pulled from this Hacking With Swift post:
  https://www.hackingwithswift.com/articles/153/how-to-test-ios-networking-code-the-easy-way
  ...this Ray Wenderlich post:
  https://www.raywenderlich.com/960290-ios-unit-testing-and-ui-testing-tutorial

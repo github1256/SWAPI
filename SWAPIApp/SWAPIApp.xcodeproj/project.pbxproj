@@ -19,6 +19,8 @@
 		931ABFB224EF3E84000148B2 /* SWAPIAppFakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFB124EF3E84000148B2 /* SWAPIAppFakeTests.swift */; };
 		931ABFBA24EF40E8000148B2 /* starWarsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 931ABFB924EF40E8000148B2 /* starWarsData.json */; };
 		931ABFBC24EF42F8000148B2 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFBB24EF42F8000148B2 /* URLProtocolStub.swift */; };
+		931ABFC324F02DC9000148B2 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFC124F02DC9000148B2 /* DetailCell.swift */; };
+		931ABFC424F02DC9000148B2 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931ABFC224F02DC9000148B2 /* DetailCell.xib */; };
 		93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6924ED597A00BC88CD /* NetworkError.swift */; };
 		93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */; };
 		93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7024ED64CF00BC88CD /* RootResponse.swift */; };
@@ -78,6 +80,8 @@
 		931ABFB324EF3E84000148B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		931ABFB924EF40E8000148B2 /* starWarsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = starWarsData.json; sourceTree = "<group>"; };
 		931ABFBB24EF42F8000148B2 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		931ABFC124F02DC9000148B2 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		931ABFC224F02DC9000148B2 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		93926B6924ED597A00BC88CD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsViewModel.swift; sourceTree = "<group>"; };
 		93926B7024ED64CF00BC88CD /* RootResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootResponse.swift; sourceTree = "<group>"; };
@@ -265,6 +269,8 @@
 			children = (
 				93926B7724EDA82700BC88CD /* LoadingView.swift */,
 				93C3BC9724EE457F0088C9A1 /* CharacterCell.swift */,
+				931ABFC124F02DC9000148B2 /* DetailCell.swift */,
+				931ABFC224F02DC9000148B2 /* DetailCell.xib */,
 				93926B8424EDD0D300BC88CD /* CharacterDetailView.swift */,
 				93926B8624EDD11C00BC88CD /* CharacterDetailView.xib */,
 			);
@@ -415,6 +421,7 @@
 				93926B7624ED756700BC88CD /* Default-568h@2x.png in Resources */,
 				9316231C24EC56CB00EF409C /* Assets.xcassets in Resources */,
 				93926B8724EDD11C00BC88CD /* CharacterDetailView.xib in Resources */,
+				931ABFC424F02DC9000148B2 /* DetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +456,7 @@
 			files = (
 				93926B8524EDD0D300BC88CD /* CharacterDetailView.swift in Sources */,
 				93926B8B24EDEC4300BC88CD /* String + Extensions.swift in Sources */,
+				931ABFC324F02DC9000148B2 /* DetailCell.swift in Sources */,
 				9316231724EC56CA00EF409C /* SWCharactersListViewController.swift in Sources */,
 				93C3BC9A24EE54000088C9A1 /* UIColor + Extensions.swift in Sources */,
 				93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */,

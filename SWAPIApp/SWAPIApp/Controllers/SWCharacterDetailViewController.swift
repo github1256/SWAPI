@@ -20,32 +20,18 @@ class SWCharacterDetailViewController: UIViewController {
             person.films.forEach { filmUrl in
                 viewModel?.fetchFilm(with: filmUrl)
             }
-            characterDetailView.person = self.person
-
             setupViews()
             setupTitleView()
+            setupTableView()
         }
     }
     typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
-    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 200)
     
     // MARK: - Subviews
     
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.backgroundColor = .systemBackground
-        view.frame = self.view.bounds
-        view.contentSize = contentViewSize
-        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        view.showsHorizontalScrollIndicator = false
-        return view
-    }()
-    
-    lazy var characterDetailView: CharacterDetailView = {
-        let view = CharacterDetailView()
-        view.frame.size = contentViewSize
-        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        return view
+    let tableView: UITableView = {
+        let table = UITableView()
+        return table
     }()
     
     let titleLabel: UILabel = {
@@ -64,8 +50,16 @@ class SWCharacterDetailViewController: UIViewController {
     // MARK: - Setup
     
     private func setupViews() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(characterDetailView)
+        view.addSubview(tableView)
+        tableView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+    }
+    
+    private func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.register(DetailCell.nib, forCellReuseIdentifier: DetailCell.reuseIdentifier)
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     private func setupTitleView() {
@@ -80,6 +74,8 @@ class SWCharacterDetailViewController: UIViewController {
 
 // MARK: - StarWarsViewModelDelegate
 
+var filmString: String = ""
+
 extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
 
@@ -92,15 +88,79 @@ extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
             }
             // For every film, create a string with its title and opening crawl word count
             // Create a separate line for each film
-            characterDetailView.filmsLabel.text = filmTuples.map {
-                "\($0.title) " + "(opening crawl word count: \($0.openingCrawlWordCount))"
-            }.joined(separator: "\n")
-            
-            characterDetailView.activityIndicator.stopAnimating()
+            filmString = filmTuples.map {
+                "\($0.title) " + "(opening crawl: \($0.openingCrawlWordCount))"
+            }.joined(separator: "\n\n")
+            tableView.reloadData()
         }
     }
     
     func fetchDidFail(with title: String, description: String) {
         AlertService.showAlert(title: title, message: description, on: self)
+    }
+}
+
+enum Attributes: Int, CaseIterable {
+    case height, mass, hairColor, skinColor, eyeColor, gender, films
+    
+    var title: String {
+        switch self {
+        case .height: return "Height (cm)"
+        case .mass: return "Mass (kg)"
+        case .hairColor: return "Hair Color"
+        case .skinColor: return "Skin Color"
+        case .eyeColor: return "Eye Color"
+        case .gender: return "Gender"
+        case .films: return "Films"
+        }
+    }
+
+    static func getSection(_ section: Int) -> Attributes {
+        return self.allCases[section]
+    }
+    
+}
+
+extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    // MARK: - Sections
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Attributes.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Attributes(rawValue: section)?.title
+    }
+
+    // MARK: - Rows
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { fatalError("Error dequeuing DetailCell") }
+
+        #warning("refactor")
+        switch Attributes.getSection(indexPath.section) {
+        case .height:
+            cell.infoLabel?.text = person.height
+        case .mass:
+            cell.infoLabel?.text = person.mass
+        case .hairColor:
+            cell.infoLabel?.text = person.hairColor
+        case .skinColor:
+            cell.infoLabel?.text = person.skinColor
+        case .eyeColor:
+            cell.infoLabel?.text = person.eyeColor
+        case .gender:
+            cell.infoLabel?.text = person.gender
+        case .films:
+            cell.infoLabel?.text = filmString
+        }
+        return cell
     }
 }
