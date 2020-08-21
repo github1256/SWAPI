@@ -31,13 +31,20 @@ class DetailHeader: UITableViewHeaderFooterView {
     
     private func setupView() {
         title.font = UIFont.preferredFont(forTextStyle: .headline)
-        contentView.backgroundColor = UIColor.systemGray6
         contentView.addSubview(title)
         setupLayouts()
     }
     
     private func setupLayouts() {
         title.anchor(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor, padding: .init(top: 8, left: 16, bottom: 8, right: 8))
+    }
+    
+    // MARK: - Variables and Properties
+
+    var section: Int = 0 {
+        didSet {
+            title.text = Attributes(rawValue: section)?.title
+        }
     }
     
 }

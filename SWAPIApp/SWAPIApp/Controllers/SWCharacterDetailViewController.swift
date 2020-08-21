@@ -48,6 +48,14 @@ class SWCharacterDetailViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        DispatchQueue.main.async {
+            self.tableView.tableHeaderView?.layoutIfNeeded()
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        }
+    }
+    
     // MARK: - Setup
     
     private func setupViews() {
@@ -99,37 +107,19 @@ extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
     }
 }
 
-enum Attributes: Int, CaseIterable {
-    case height, mass, hairColor, skinColor, eyeColor, gender, films
-    
-    var title: String {
-        switch self {
-        case .height: return "Height (cm)"
-        case .mass: return "Mass (kg)"
-        case .hairColor: return "Hair Color"
-        case .skinColor: return "Skin Color"
-        case .eyeColor: return "Eye Color"
-        case .gender: return "Gender"
-        case .films: return "Films"
-        }
-    }
-
-    static func getSection(_ section: Int) -> Attributes {
-        return self.allCases[section]
-    }
-}
+// MARK: - TableView Delegate and Datasource
 
 extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Sections
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Attributes.allCases.count
+        return Attributes.getCount()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DetailHeader.reuseIdentifier) as? DetailHeader else { fatalError("Error dequeuing DetailHeader") }
-        header.title.text = Attributes(rawValue: section)?.title
+        header.section = section
         return header
     }
     
@@ -144,15 +134,14 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { fatalError("Error dequeuing DetailCell") }
         switch Attributes.getSection(indexPath.section) {
-        case .height: cell.infoLabel?.text = person.height
-        case .mass: cell.infoLabel?.text = person.mass
-        case .hairColor: cell.infoLabel?.text = person.hairColor
-        case .skinColor: cell.infoLabel?.text = person.skinColor
-        case .eyeColor: cell.infoLabel?.text = person.eyeColor
-        case .gender: cell.infoLabel?.text = person.gender
+        case .height: cell.configureCell(with: person.height)
+        case .mass: cell.configureCell(with: person.mass)
+        case .hairColor: cell.configureCell(with: person.hairColor)
+        case .skinColor: cell.configureCell(with: person.skinColor)
+        case .eyeColor: cell.configureCell(with: person.eyeColor)
+        case .gender: cell.configureCell(with: person.gender)
         case .films:
-            
-            cell.infoLabel?.text = filmString
+            cell.configureCell(with: filmString)
             cell.loadingIndicator.isHidden = false
             cell.loadingIndicator.startAnimating()
             

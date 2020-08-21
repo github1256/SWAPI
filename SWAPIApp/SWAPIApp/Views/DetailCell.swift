@@ -29,4 +29,11 @@ class DetailCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
     }
+    
+    // MARK: - Variables and Properties
+    
+    func configureCell(with text: String) {
+        infoLabel?.text = text
+    }
+
 }
