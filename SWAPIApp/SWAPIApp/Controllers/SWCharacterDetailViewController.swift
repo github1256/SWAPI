@@ -25,8 +25,7 @@ class SWCharacterDetailViewController: UIViewController {
             setupTableView()
         }
     }
-    typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
-    var filmString: String = ""
+    var filmString: String?
     
     // MARK: - Subviews
     
@@ -137,7 +136,7 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
         case .eyeColor: cell.configureCell(with: person.eyeColor)
         case .gender: cell.configureCell(with: person.gender)
         case .films:
-            cell.configureCell(with: filmString)
+            cell.configureCell(with: filmString ?? "")
             cell.loadingIndicator.isHidden = false
             cell.loadingIndicator.startAnimating()
             
