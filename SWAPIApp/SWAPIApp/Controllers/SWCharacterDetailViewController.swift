@@ -26,6 +26,7 @@ class SWCharacterDetailViewController: UIViewController {
         }
     }
     typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
+    var filmString: String = ""
     
     // MARK: - Subviews
     
@@ -59,7 +60,6 @@ class SWCharacterDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.register(DetailCell.nib, forCellReuseIdentifier: DetailCell.reuseIdentifier)
-        tableView.rowHeight = UITableView.automaticDimension
     }
 
     private func setupTitleView() {
@@ -73,8 +73,6 @@ class SWCharacterDetailViewController: UIViewController {
 }
 
 // MARK: - StarWarsViewModelDelegate
-
-var filmString: String = ""
 
 extension SWCharacterDetailViewController: StarWarsViewModelDelegate {
     func fetchDidSucceed() {
@@ -118,7 +116,6 @@ enum Attributes: Int, CaseIterable {
     static func getSection(_ section: Int) -> Attributes {
         return self.allCases[section]
     }
-    
 }
 
 extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -152,9 +149,12 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
         case .skinColor: cell.infoLabel?.text = person.skinColor
         case .eyeColor: cell.infoLabel?.text = person.eyeColor
         case .gender: cell.infoLabel?.text = person.gender
-        case .films: cell.infoLabel?.text = filmString
+        case .films:
+            
+            cell.infoLabel?.text = filmString
             cell.loadingIndicator.isHidden = false
             cell.loadingIndicator.startAnimating()
+            
             // Remove loading indicator when films are loaded
             if filmString != "" {
                 cell.loadingIndicator.stopAnimating()
