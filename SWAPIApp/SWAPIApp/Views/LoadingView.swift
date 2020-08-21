@@ -71,4 +71,3 @@ class LoadingView: UIView {
         stackView.center(in: self)
     }
 }
-
