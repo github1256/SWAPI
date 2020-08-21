@@ -34,7 +34,7 @@ This project follows the MVVM architectural pattern and features a pure UIKit so
 
 Unit tests were written using XCTest to test the networking calls with URLSession and to check that the word count string extension was returning the correct number of words in the `opening_crawl` attribute.
 
-The app supports light/dark mode, landscape/portrait orientation, and uses Dynamic Type.
+The app supports light/dark mode and landscape/portrait orientation.
 
 ## Screenshots
 
