@@ -70,22 +70,12 @@ class SWCharacterDetailViewController: UIViewController {
     }
 
     private func setupTitleView() {
-        let navTitle = person.name.customizeString(color: UIColor.label, fontSize: 20.0, weight: .bold)
+        let navTitle = person.name.customizeString(color: UIColor.label, fontSize: 18.0, weight: .bold)
         let navSubtitle = "Birth Year: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
         navTitle.append(NSMutableAttributedString(string: "\n"))
         navTitle.append(navSubtitle)
         titleLabel.attributedText = navTitle
         navigationItem.titleView = titleLabel
-    }
-    
-    private func setupNavigationBarButtons() {
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(handleDismiss))
-        ]
-    }
-    
-    @objc func handleDismiss() {
-        self.dismiss(animated: true, completion: nil)
     }
 }
 

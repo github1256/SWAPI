@@ -67,8 +67,7 @@ extension SWCharactersListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let swCharacterDetailViewController = SWCharacterDetailViewController()
         swCharacterDetailViewController.person = viewModel?.findPerson(at: indexPath.row)
-        let navController = UINavigationController(rootViewController: swCharacterDetailViewController)
-        navigationController?.present(navController, animated: true, completion: nil)
+        navigationController?.pushViewController(swCharacterDetailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
