@@ -57,9 +57,12 @@ final class StarWarsViewModel {
     }
     
     // MARK: - Fetch Data
-
+    
     func fetchPeople() {
-        apiClient.fetchPeople(page: currentPage) { result in
+        
+        //apiClient.fetchPeople(page: currentPage) { result in
+        
+        apiClient.fetch(with: nil, page: currentPage, dataType: RootResponse.self) { result in
             switch result {
             case .failure(let error):
                 // Perform on main thread to update UI
@@ -82,10 +85,38 @@ final class StarWarsViewModel {
                 }
             }
         }
+        
+        
+        
+        
+        //        apiClient.fetchPeople(page: currentPage) { result in
+        //            switch result {
+        //            case .failure(let error):
+        //                // Perform on main thread to update UI
+        //                DispatchQueue.main.async {
+        //                    self.delegate?.fetchDidFail(with: error.reason, description: error.localizedDescription)
+        //                }
+        //            case .success(let response):
+        //                // Perform on main thread to update UI
+        //                DispatchQueue.main.async {
+        //                    // Store total number of characters available on the server
+        //                    self.total = response.count
+        //
+        //                    // Increment the page number to fetch the next page of results
+        //                    self.currentPage += 1
+        //
+        //                    // Store the latest fetched characters
+        //                    self.starWarsPeople.append(contentsOf: response.results)
+        //
+        //                    self.delegate?.fetchDidSucceed()
+        //                }
+        //            }
+        //        }
     }
     
     func fetchFilm(with url: URL) {
-        apiClient.fetchFilm(with: url) { result in
+        //apiClient.fetchFilm(with: url) { result in
+        apiClient.fetch(with: url, page: nil, dataType: Film.self) { result in
             switch result {
             case .failure(let error):
                 // Perform on main thread to update UI
@@ -101,4 +132,23 @@ final class StarWarsViewModel {
             }
         }
     }
+    
+    
+    
+    //        apiClient.fetchFilm(with: url) { result in
+    //            switch result {
+    //            case .failure(let error):
+    //                // Perform on main thread to update UI
+    //                DispatchQueue.main.async {
+    //                    self.delegate?.fetchDidFail(with: error.reason, description: error.localizedDescription)
+    //                }
+    //            case .success(let film):
+    //                // Perform on main thread to update UI
+    //                DispatchQueue.main.async {
+    //                    self.films.append(film)
+    //                    self.delegate?.fetchDidSucceed()
+    //                }
+    //            }
+    //        }
 }
+

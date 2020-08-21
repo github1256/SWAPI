@@ -10,8 +10,9 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidUrl
-    case requestFailed
-    case decodingFailed
+    case requestFailed(Error)
+    case decodingFailed(Error)
+    case unknown
 
     var reason: String {
         switch self {
@@ -21,6 +22,8 @@ enum NetworkError: Error {
             return "Network Failure: Failed to fetch data"
         case .decodingFailed:
             return "Network Failure: Failed to decode data"
+        case .unknown:
+            return "Network Failure"
         }
     }
 }
