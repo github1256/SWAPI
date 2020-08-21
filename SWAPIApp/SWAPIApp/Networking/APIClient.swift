@@ -41,7 +41,7 @@ final class APIClient {
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(.failure(.request(error)))
+                    completion(.failure(.request))
                 }
                 return
             }
@@ -65,12 +65,12 @@ final class APIClient {
                     }
                 } catch let jsonError {
                     DispatchQueue.main.async {
-                        completion(.failure(.decoding(jsonError)))
+                        completion(.failure(.decoding))
                     }
                 }
             default :
                 DispatchQueue.main.async {
-                    completion(.failure(.network(statusCode)))
+                    completion(.failure(.network))
                 }
                 return
             }

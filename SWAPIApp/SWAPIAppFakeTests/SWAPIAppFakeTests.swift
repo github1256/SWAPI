@@ -57,6 +57,7 @@ class SWAPIAppFakeTests: XCTestCase {
                 XCTAssertEqual(payload.count, 82)
                 XCTAssertEqual(payload.next, URL(string: "http://swapi.dev/api/people/?page=2"))
                 XCTAssertEqual(payload.previous, nil)
+                XCTAssertEqual(payload.results.count, 10)
             case .failure(let error):
                 XCTFail("Unexpected Failure Reponse: \(error.localizedDescription)")
             }
@@ -69,12 +70,12 @@ class SWAPIAppFakeTests: XCTestCase {
     func testFetchingDataFailure() {
         // Use incorrect JSON data to check for decoding error
         let incorrectData = Data()
-        
+
         URLProtocolStub.requestHandler = { request in
             let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
             return (incorrectData, response, nil)
         }
-        
+
         // Call API
         let promise = expectation(description: "Failure Response from Fetching Data")
         sut.apiClient.fetch(with: nil, page: nil, dataType: TestPayload.self) { result in
