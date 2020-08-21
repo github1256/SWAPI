@@ -60,11 +60,12 @@ class SWCharacterDetailViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.register(DetailCell.nib, forCellReuseIdentifier: DetailCell.reuseIdentifier)
+        tableView.register(DetailHeader.self, forHeaderFooterViewReuseIdentifier: DetailHeader.reuseIdentifier)
     }
 
     private func setupTitleView() {
-        let navTitle = person.name.customizeString(color: UIColor.label, fontSize: 18.0, weight: .bold)
-        let navSubtitle = "Birth Year: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 14.0, weight: .light)
+        let navTitle = person.name.customizeString(color: UIColor.label, fontSize: 20.0, weight: .bold)
+        let navSubtitle = "Birth Year: \(person.birthYear)".customizeString(color: .secondaryLabel, fontSize: 16.0, weight: .light)
         navTitle.append(NSMutableAttributedString(string: "\n"))
         navTitle.append(navSubtitle)
         titleLabel.attributedText = navTitle
@@ -126,8 +127,10 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
         return Attributes.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Attributes(rawValue: section)?.title
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DetailHeader.reuseIdentifier) as? DetailHeader else { fatalError("Error dequeuing DetailHeader") }
+        header.title.text = Attributes(rawValue: section)?.title
+        return header
     }
     
     // MARK: - Rows
@@ -136,9 +139,7 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { fatalError("Error dequeuing DetailCell") }

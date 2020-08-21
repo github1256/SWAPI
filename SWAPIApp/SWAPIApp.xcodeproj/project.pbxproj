@@ -21,6 +21,7 @@
 		931ABFBC24EF42F8000148B2 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFBB24EF42F8000148B2 /* URLProtocolStub.swift */; };
 		931ABFC724F048C0000148B2 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFC524F048C0000148B2 /* DetailCell.swift */; };
 		931ABFC824F048C0000148B2 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931ABFC624F048C0000148B2 /* DetailCell.xib */; };
+		931ABFCA24F04E97000148B2 /* DetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931ABFC924F04E97000148B2 /* DetailHeader.swift */; };
 		93926B6A24ED597A00BC88CD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6924ED597A00BC88CD /* NetworkError.swift */; };
 		93926B6C24ED5A5B00BC88CD /* StarWarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */; };
 		93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93926B7024ED64CF00BC88CD /* RootResponse.swift */; };
@@ -80,6 +81,7 @@
 		931ABFBB24EF42F8000148B2 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		931ABFC524F048C0000148B2 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		931ABFC624F048C0000148B2 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
+		931ABFC924F04E97000148B2 /* DetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeader.swift; sourceTree = "<group>"; };
 		93926B6924ED597A00BC88CD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		93926B6B24ED5A5B00BC88CD /* StarWarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsViewModel.swift; sourceTree = "<group>"; };
 		93926B7024ED64CF00BC88CD /* RootResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootResponse.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			children = (
 				93926B7724EDA82700BC88CD /* LoadingView.swift */,
 				93C3BC9724EE457F0088C9A1 /* CharacterCell.swift */,
+				931ABFC924F04E97000148B2 /* DetailHeader.swift */,
 				931ABFC524F048C0000148B2 /* DetailCell.swift */,
 				931ABFC624F048C0000148B2 /* DetailCell.xib */,
 			);
@@ -448,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93926B8B24EDEC4300BC88CD /* String + Extensions.swift in Sources */,
+				931ABFCA24F04E97000148B2 /* DetailHeader.swift in Sources */,
 				9316231724EC56CA00EF409C /* SWCharactersListViewController.swift in Sources */,
 				93C3BC9A24EE54000088C9A1 /* UIColor + Extensions.swift in Sources */,
 				93926B7124ED64CF00BC88CD /* RootResponse.swift in Sources */,
