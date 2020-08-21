@@ -23,6 +23,8 @@ class SWAPIAppFakeTests: XCTestCase {
     override func setUp() {
         super.setUp()
         sut = StarWarsViewModel(delegate: self)
+        
+        // Inject URLSession configured with URLProtocolStub
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [URLProtocolStub.self]
         let session = URLSession(configuration: config)
@@ -30,34 +32,57 @@ class SWAPIAppFakeTests: XCTestCase {
     }
 
     override func tearDown() {
+        sut = nil
         URLProtocolStub.requestHandler = nil
         super.tearDown()
     }
     
     func testFetchingDataSuccess() {
-        // Decoding mock pre-fetched JSON
-        let testBundle = Bundle(for: type(of: self))
-        let path = testBundle.path(forResource: "starWarsData", ofType: "json")
-        let data = try? Data(contentsOf: URL(fileURLWithPath: path!), options: .alwaysMapped)
+        // Decode mock JSON data from page 1 of results
+        let jsonPath = Bundle(for: type(of: self)).path(forResource: "starWarsData", ofType: "json")
+        let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath!))
         
-        //let jsonUrl = Bundle.main.url(forResource: "starWarsData", withExtension: "json")
-        //let jsonData = try? Data(contentsOf: jsonUrl!)
-        
+        // Call handler with a request and return mock response
+        // In this example, we are only validating a URL
         URLProtocolStub.requestHandler = { request in
-            let response = HTTPURLResponse(url: self.apiUrl, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (data, response, nil)
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (jsonData, response, nil)
         }
         
         // Call API
-        let promise = expectation(description: "Status code: 200")
-        sut.apiClient.fetch(with: apiUrl, page: nil, dataType: TestPayload.self) { result in
+        let promise = expectation(description: "Success Response from Fetching Data")
+        sut.apiClient.fetch(with: nil, page: nil, dataType: TestPayload.self) { result in
             switch result {
             case .success(let payload):
                 XCTAssertEqual(payload.count, 82)
                 XCTAssertEqual(payload.next, URL(string: "http://swapi.dev/api/people/?page=2"))
                 XCTAssertEqual(payload.previous, nil)
             case .failure(let error):
-                XCTFail("Request Failed: \(error.localizedDescription)")
+                XCTFail("Unexpected Failure Reponse: \(error.localizedDescription)")
+            }
+            // When app receives a response, expectation is fulfilled
+            promise.fulfill()
+        }
+        wait(for: [promise], timeout: 5)
+    }
+    
+    func testFetchingDataFailure() {
+        // Use incorrect JSON data to check for decoding error
+        let incorrectData = Data()
+        
+        URLProtocolStub.requestHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (incorrectData, response, nil)
+        }
+        
+        // Call API
+        let promise = expectation(description: "Failure Response from Fetching Data")
+        sut.apiClient.fetch(with: nil, page: nil, dataType: TestPayload.self) { result in
+            switch result {
+            case .success(_):
+                XCTFail("Unexpected Success Response")
+            case .failure(let error):
+                XCTAssertEqual(error, NetworkError.decoding)
             }
             promise.fulfill()
         }

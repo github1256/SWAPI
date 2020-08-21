@@ -41,12 +41,11 @@ final class APIClient {
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(.failure(.requestFailed(error)))
+                    completion(.failure(.request(error)))
                 }
                 return
             }
             // Check if http response is successful and data is safe
-            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode,
                 let safeData = data
                 else {
@@ -66,12 +65,12 @@ final class APIClient {
                     }
                 } catch let jsonError {
                     DispatchQueue.main.async {
-                        completion(.failure(.decodingFailed(jsonError)))
+                        completion(.failure(.decoding(jsonError)))
                     }
                 }
             default :
                 DispatchQueue.main.async {
-                    completion(.failure(.response(statusCode)))
+                    completion(.failure(.network(statusCode)))
                 }
                 return
             }

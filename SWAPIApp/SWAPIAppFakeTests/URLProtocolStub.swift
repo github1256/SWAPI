@@ -8,8 +8,24 @@
 
 import Foundation
 
+/*
+ Create custom subclass of URLProtocol to handle network requests
+ Inspired by this Hacking With Swift post:
+ https://www.hackingwithswift.com/articles/153/how-to-test-ios-networking-code-the-easy-way
+ ...this Ray Wenderlich post:
+ https://www.raywenderlich.com/960290-ios-unit-testing-and-ui-testing-tutorial
+ ...this Medium post:
+ https://medium.com/@dhawaldawar/how-to-mock-urlsession-using-urlprotocol-8b74f389a67a
+ and this Augmented Code post:
+ https://augmentedcode.io/2019/05/26/testing-networking-code-with-custom-urlprotocol-on-ios/
+ */
+
 // Stub: Returns fixed data
 final class URLProtocolStub: URLProtocol {
+    
+    // Dictionary that stores the data we expect from different URLs
+    static var testURLs = [URL?: Data]()
+    
     override class func canInit(with request: URLRequest) -> Bool {
         // Returning true means we will handle all url requests
         return true
@@ -19,6 +35,7 @@ final class URLProtocolStub: URLProtocol {
         return request
     }
     
+    // Request Handler to test the request and return mock response
     static var requestHandler: ((URLRequest) -> (Data?, HTTPURLResponse, Error?))?
     
     override func startLoading() {

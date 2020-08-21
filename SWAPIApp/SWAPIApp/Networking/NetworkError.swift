@@ -10,20 +10,20 @@ import Foundation
 
 enum NetworkError: Error {
     case invalidUrl
-    case requestFailed(Error)
-    case decodingFailed(Error)
-    case response(Int)
+    case request(Error)
+    case decoding(Error)
+    case network(Int)
     case unknown
 
     var reason: String {
         switch self {
         case .invalidUrl:
             return "Network Failure: Invalid URL"
-        case .requestFailed:
+        case .request:
             return "Network Failure: Error occurred while fetching data"
-        case .decodingFailed:
+        case .decoding:
             return "Network Failure: Error occurred while decoding data"
-        case .response:
+        case .network:
             return "Network Failure: Unsuccessful HTTP response"
         case .unknown:
             return "Network Failure"
