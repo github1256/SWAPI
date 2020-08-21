@@ -9,7 +9,6 @@
 import UIKit
 
 class CharacterCell: UITableViewCell {
-    
     static var reuseIdentifier: String {
         String(describing: self)
     }

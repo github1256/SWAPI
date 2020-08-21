@@ -9,9 +9,6 @@
 import UIKit
 
 class DetailCell: UITableViewCell {
-
-    @IBOutlet weak var infoLabel: UILabel!
-    
     static var reuseIdentifier: String {
         String(describing: self)
     }
@@ -20,12 +17,16 @@ class DetailCell: UITableViewCell {
         return UINib(nibName: String(describing: self), bundle: nil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView! {
+        didSet {
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.isHidden = true
+        }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
 }

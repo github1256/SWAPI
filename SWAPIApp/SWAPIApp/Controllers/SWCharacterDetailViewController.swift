@@ -132,34 +132,33 @@ extension SWCharacterDetailViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Attributes(rawValue: section)?.title
     }
-
+    
     // MARK: - Rows
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseIdentifier, for: indexPath) as? DetailCell else { fatalError("Error dequeuing DetailCell") }
-
-        #warning("refactor")
         switch Attributes.getSection(indexPath.section) {
-        case .height:
-            cell.infoLabel?.text = person.height
-        case .mass:
-            cell.infoLabel?.text = person.mass
-        case .hairColor:
-            cell.infoLabel?.text = person.hairColor
-        case .skinColor:
-            cell.infoLabel?.text = person.skinColor
-        case .eyeColor:
-            cell.infoLabel?.text = person.eyeColor
-        case .gender:
-            cell.infoLabel?.text = person.gender
-        case .films:
-            cell.infoLabel?.text = filmString
+        case .height: cell.infoLabel?.text = person.height
+        case .mass: cell.infoLabel?.text = person.mass
+        case .hairColor: cell.infoLabel?.text = person.hairColor
+        case .skinColor: cell.infoLabel?.text = person.skinColor
+        case .eyeColor: cell.infoLabel?.text = person.eyeColor
+        case .gender: cell.infoLabel?.text = person.gender
+        case .films: cell.infoLabel?.text = filmString
+            cell.loadingIndicator.isHidden = false
+            cell.loadingIndicator.startAnimating()
+            // Remove loading indicator when films are loaded
+            if filmString != "" {
+                cell.loadingIndicator.stopAnimating()
+            }
         }
         return cell
     }
