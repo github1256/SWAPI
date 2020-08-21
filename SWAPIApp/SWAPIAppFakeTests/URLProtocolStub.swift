@@ -9,12 +9,9 @@
 import Foundation
 
 // Stub: Returns fixed data
-class URLProtocolStub: URLProtocol {
-    // Static property that maps URLs to data we expect
-    static var testURLS = [URL?: Data]()
-    
+final class URLProtocolStub: URLProtocol {
     override class func canInit(with request: URLRequest) -> Bool {
-        // Returning true means we will handle all requests
+        // Returning true means we will handle all url requests
         return true
     }
     
@@ -22,14 +19,24 @@ class URLProtocolStub: URLProtocol {
         return request
     }
     
+    static var requestHandler: ((URLRequest) -> (Data?, HTTPURLResponse, Error?))?
+    
     override func startLoading() {
-        // Guard for valid URL and its test data
-        guard let url = request.url,
-            let safeData = URLProtocolStub.testURLS[url] else { return }
-        // Return test data immediately
-        client?.urlProtocol(self, didLoad: safeData)
-        client?.urlProtocolDidFinishLoading(self)
+        guard let handler = URLProtocolStub.requestHandler else {
+            fatalError("Request Handler is unavailable")
+        }
+        let (data, response, error) = handler(request)
+        if let safeData = data {
+            // Return test data immediately
+            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: safeData)
+            client?.urlProtocolDidFinishLoading(self)
+        } else if let error = error {
+            client?.urlProtocol(self, didFailWithError: error)
+        }
     }
     
-    override func stopLoading() { }
+    override func stopLoading() {
+        // Leave empty as this protocol is not asynchronous
+    }
 }

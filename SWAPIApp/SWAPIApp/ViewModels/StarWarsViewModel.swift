@@ -23,7 +23,7 @@ final class StarWarsViewModel {
     
     // MARK: - Variables and Properties
     
-    let apiClient = APIClient()
+    var apiClient = APIClient()
     
     private var films: [Film] = []
     private var starWarsPeople: [Person] = [] {
