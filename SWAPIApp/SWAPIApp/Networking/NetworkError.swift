@@ -12,6 +12,7 @@ enum NetworkError: Error {
     case invalidUrl
     case requestFailed(Error)
     case decodingFailed(Error)
+    case response(Int)
     case unknown
 
     var reason: String {
@@ -19,9 +20,11 @@ enum NetworkError: Error {
         case .invalidUrl:
             return "Network Failure: Invalid URL"
         case .requestFailed:
-            return "Network Failure: Failed to fetch data"
+            return "Network Failure: Error occurred while fetching data"
         case .decodingFailed:
-            return "Network Failure: Failed to decode data"
+            return "Network Failure: Error occurred while decoding data"
+        case .response:
+            return "Network Failure: Unsuccessful HTTP response"
         case .unknown:
             return "Network Failure"
         }

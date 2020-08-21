@@ -18,20 +18,18 @@ final class APIClient {
     private let session: URLSession
     
     init(session: URLSession = URLSession.shared) {
-      self.session = session
+        self.session = session
     }
     
     // MARK: - Network Call
     
-    // Uses generics to create reusable function
     func fetch<T: Decodable>(with url: URL?, page: Int?, dataType: T.Type, completion: @escaping (Result<T, NetworkError>) -> Void) {
         var request: URL = baseUrl
         
         // If URL exists use it
         if let url = url { request = url }
         
-        // API Pagination
-        // If there are multiple pages of results...
+        // API Pagination: there are multiple pages of results...
         if let page = page {
             // ... create url string with the corresponding page number
             let urlString: String
@@ -47,10 +45,9 @@ final class APIClient {
                 }
                 return
             }
-            // Check if HTTP response is successful and data is safe
-            // Otherwise return with a failure
-            guard let httpResponse = response as? HTTPURLResponse,
-                (200...299).contains(httpResponse.statusCode),
+            // Check if http response is successful and data is safe
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode,
                 let safeData = data
                 else {
                     DispatchQueue.main.async {
@@ -58,18 +55,25 @@ final class APIClient {
                     }
                     return
             }
-            // If response is valid, decode JSON
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let decodedData = try decoder.decode(dataType, from: safeData)
-                DispatchQueue.main.async {
-                    completion(.success(decodedData))
+            switch statusCode {
+            case 200...299:
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let decodedData = try decoder.decode(dataType, from: safeData)
+                    DispatchQueue.main.async {
+                        completion(.success(decodedData))
+                    }
+                } catch let jsonError {
+                    DispatchQueue.main.async {
+                        completion(.failure(.decodingFailed(jsonError)))
+                    }
                 }
-            } catch let jsonError {
+            default :
                 DispatchQueue.main.async {
-                    completion(.failure(.decodingFailed(jsonError)))
+                    completion(.failure(.response(statusCode)))
                 }
+                return
             }
         }
         dataTask.resume()
