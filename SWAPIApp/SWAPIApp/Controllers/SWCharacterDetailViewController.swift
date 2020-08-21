@@ -24,7 +24,6 @@ class SWCharacterDetailViewController: UIViewController {
 
             setupViews()
             setupTitleView()
-            setupNavigationBarButtons()
         }
     }
     typealias FilmTuple = (title: String, openingCrawlWordCount: Int)
